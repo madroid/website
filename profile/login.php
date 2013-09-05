@@ -9,7 +9,7 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['passwd'])){
 	require_once('connect.php');
 	$db = new DB_CONNECT();
 	
-	$query_get_user = "SELECT * FROM profile WHERE email = '$email'";
+	$query_get_user = "SELECT * FROM user WHERE email = '$email'";
 	$result_user_info = mysql_query($query_get_user) ;
 	if(!empty($result_user_info)){
 		if(mysql_num_rows($result_user_info)>0){

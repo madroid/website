@@ -5,9 +5,6 @@
 	<link href="../css/bootstrap.css" rel="stylesheet">
 	<link href="../css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="../css/style.css" rel="stylesheet">
-	<script type="text/javascript" src="jquery.js"></script>		
-		<script type="text/javascript" src="../js/common.js"> </script>
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
 </head>
 
 <body>
@@ -65,6 +62,9 @@
 	</div>
 	</div>			
 	
+	<script type="text/javascript" src="jquery.js"></script>		
+	<script type="text/javascript" src="../js/common.js"> </script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
 
 
 </body>

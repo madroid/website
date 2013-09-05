@@ -103,10 +103,12 @@ function userRegister(){
  var confirmPass = escape(document.getElementById("inputConfirm").value);
  if(inputPasswd.length>0 && inputUsername.length>0 && confirmPass.length>0){
   if(inputPasswd==confirmPass){
+	
     var url = "register.php?email="+inputUsername+"&passwd="+inputPasswd;
   request.open("POST",url,true);
   request.onreadystatechange = myAccount ;
   request.send(null);
+  
 }
 else{
   alert("Password don't match!");
@@ -127,7 +129,7 @@ function myAccount(){
        document.getElementById("username").innerHTML=jObj.name;
       }
       else{
-       document.getElementById("username").innerHTML="Friend"; 
+       document.getElementById("username").innerHTML="Anon"; 
       }
 
       $('#inputEmail').val("");
@@ -146,21 +148,6 @@ function validateEmail(email)
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
 }
-
-// function checkPassword(){
-//   var len = $("#inputPassword").val().length;
-//   if(len>5){
-//         $('#statusPassword').attr("src",success_img);
-//         $('#statusPassword').show();   
-//   }
-//   else if(len>0){
-//         $('#statusPassword').attr("src",error_img);
-//         $('#statusPassword').show();    
-//   }
-//   else{
-//       $('#statusPassword').hide();    
-//   }
-// }
 
 function demo(){
   alert("Running...");

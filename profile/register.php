@@ -8,7 +8,7 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['passwd'])){
 	require_once('connect.php');
 	$db = new DB_CONNECT();
 	
-	$query_check_emailID = "SELECT email FROM profile WHERE email='$email'";
+	$query_check_emailID = "SELECT email FROM user WHERE email='$email'";
 	$result = mysql_query($query_check_emailID);
 	$isExists = false ;
 	if(!empty($result)){
@@ -17,7 +17,7 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['passwd'])){
 		}
 	}
 	if(!$isExists){
-		$query_create_new_user = "INSERT INTO profile (email,passwd)".
+		$query_create_new_user = "INSERT INTO user (email,passwd)".
 								 "VALUES('$email','$passwd')" ;
 
 		$result_iscreated_new_user = mysql_query($query_create_new_user) ;

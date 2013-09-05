@@ -58,8 +58,8 @@
 			<!-- Mentioning javascript files. Added at the bottom of the page so that the page is loaded fast.-->
 			<script type="text/javascript" src="../js/jquery.js"></script>		
 			<script type="text/javascript" src="../js/common.js"> </script>
-			<script type="text/javascript" src="../js/bootstrap.js"></script>
 			<script type="text/javascript" src="../js/login.js"></script>
+			<script type="text/javascript" src="../js/bootstrap.js"></script>
 
-		</body>
-		</html>
+</body>
+</html>

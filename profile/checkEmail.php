@@ -8,7 +8,7 @@ if(isset($_REQUEST['email'])){
 	require_once('connect.php');
 	$db = new DB_CONNECT();
 
-	$query_check_emailID = "SELECT email FROM profile WHERE email='$emailID'";
+	$query_check_emailID = "SELECT email FROM user WHERE email='$emailID'";
 	$result = mysql_query($query_check_emailID);
 	if(!empty($result)){
 		if(mysql_num_rows($result)>0){

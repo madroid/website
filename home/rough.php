@@ -11,7 +11,7 @@
 				var $container = $('#three');
 
 				$container.masonry({
-				  
+				  columnWidth: 400,
 				  itemSelector: '.item'
 				});
 				var msnry = $container.data('masonry');
