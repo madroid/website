@@ -1,0 +1,168 @@
+body{
+	background-color:#EDE9E6;
+	margin:0px;
+	position: absolute;
+	overflow-x: scroll;
+}
+
+
+.top{
+	overflow: auto;
+	border:0px solid black;
+}
+
+.logo{
+	margin-bottom:10px;
+}
+
+.menu{
+	margin-top:5px;
+	margin-bottom:5px;
+	border: 0px solid black;
+	display:inline-block;
+	color:#B0AFAB;
+}
+
+.menu > ul{
+	list-style:none;
+	-webkit-margin-before:0em;
+	-webkit-margin-after:0em;
+	-webkit-padding-start:0em;
+	moz-webkit-margin-before:0em;
+	moz-webkit-margin-after:0em;
+	moz-webkit-padding-start:0em;
+}
+
+.menu >ul > li{
+	display:inline-block;
+	border: 0px solid black;
+	padding-left:8px;
+	padding-right:8px;
+	width:auto;	
+}
+
+.menu > ul > li > a{
+	text-decoration: none;
+	color:#B0AFAB;
+}
+
+.top_left{
+	padding-left:8px;
+	padding-top:12px;
+	display: inline;
+	float:left;
+	border: 0px solid black;
+}
+
+.top_right{
+	display:inline;
+	position:relative;
+	right:0px;
+
+}
+
+#footer{
+	background-color: black;
+	font-size:12px;
+	height:80px;
+	padding-top:40px;
+	padding-bottom:20px;
+}
+
+#footer_menu{
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	border: 0px solid white;
+	position:relative;
+}
+#footer_menu > ul{
+	list-style:none;
+	-webkit-margin-before:0em;
+	-webkit-margin-after:0em;
+	-webkit-padding-start:0em;
+	moz-webkit-margin-before:0em;
+	moz-webkit-margin-after:0em;
+	moz-webkit-padding-start:0em;	
+}
+
+#footer_menu > ul >li{
+	display:inline-block;
+	border: 0px solid white;
+	width:24.5%;
+	text-align: center;		
+}
+
+#footer_menu > ul >li >a {
+	text-decoration: none;
+	color:white;
+	margin-left: auto;
+	margin-bottom: auto;
+}
+
+#copyright{
+	float:right;
+	margin-right:4%;
+	font-size:10px;
+	margin-top:30px;
+	color:white;
+	border: 0px solid white;
+}
+
+#bottom{
+	padding:60px 3%;
+	position: absolute;
+	overflow: hidden;
+}
+
+
+#video{
+	display: inline-block;
+	border: 0px solid black;
+}
+
+.item{
+	margin-left: 50px;
+	margin-bottom:30px;
+	display: inline-block;
+	width:220px;
+	position:relative;
+	padding:5px;
+	vertical-align: top;
+	background-color: white;
+	border:0px solid black
+}
+
+.img{
+	width: 100%;
+}
+
+.title{
+	height:30px;
+	padding:3px;
+	border:0px solid black;
+	position: relative;
+}
+
+.description{
+	height: 60px;
+	padding:3px;
+	border:0px solid black;
+	position:relative;
+}
+
+.circle{
+	width: 20px;
+    height: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: black;
+    display: inline-block;
+}
+
+.colors{
+	top:3px;
+	right:3px;
+	position: absolute;
+}

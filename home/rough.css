@@ -1,0 +1,93 @@
+body{
+	background-color: white;
+	padding:40px;
+}
+
+#outside{
+	width:100px;
+	
+	border: 1px solid black;
+	position: absolute;
+}
+
+#inside{
+	border: 1px solid black;
+	display: inline-block;
+}
+
+.circle{
+	width: 20px;
+    height: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: black;
+    display: inline-block;
+    position: relative;
+    vertical-align: bottom;
+    bottom:0px;
+}
+
+
+#three_col {
+       -moz-column-count: 3;
+       -moz-column-gap: 20px;
+       -webkit-column-count: 3;
+       -webkit-column-gap: 20px;
+}
+
+.item{
+	margin-left: 50px;
+	margin-bottom:50px;
+	display: inline-block;
+	width:220px;
+	position:relative;
+	padding:5px;
+	vertical-align: top;
+	background-color: white;
+	border:1px solid black
+
+}
+
+.img{
+	width: 100%;
+}
+
+.title{
+	height:30px;
+	padding:3px;
+	border:0px solid black;
+	position: relative;
+}
+
+.description{
+	height: 60px;
+	padding:3px;
+	border:0px solid black;
+	position:relative;
+}
+
+.circle{
+	width: 20px;
+    height: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: black;
+    display: inline-block;
+}
+
+.colors{
+	top:3px;
+	right:3px;
+	position: absolute;
+}
+
+#three{
+	height:auto;
+
+}
+
+.myclass{
+	
+}
