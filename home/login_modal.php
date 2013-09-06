@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-	<link href="../css/bootstrap.css" rel="stylesheet">
-	<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-	
-
-</head>
-<body>
-	<div>
-		<h4>Welcome&nbsp;<span id="username">Guest</span></h4>
-	</div>
-	<a href="#login_box" id="signin" role="button" class="btn" data-toggle="modal">Sign in</a>
-	
-
-	<!--Body Sign-in / Sign-up-->
 	<div id="login_box" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<!-- header of the login box -->
 		<div class="modal-header">
@@ -27,7 +10,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inputEmail">Email</label>
 					<div class="controls">
-						<input type="email" name="email" id="inputEmail" placeholder="Email address"  autocomplete="on">
+						<input type="email" name="email" id="inputEmail" placeholder="Email address"  autocomplete="on" class="normal_font">
 					</div>
 				</div>
 				<div class="control-group">
@@ -53,13 +36,4 @@
 				</div>
 
 			</div>
-			<!-- login body ends here -->
-			
-			<!-- Mentioning javascript files. Added at the bottom of the page so that the page is loaded fast.-->
-			<script type="text/javascript" src="../js/jquery.js"></script>		
-			<script type="text/javascript" src="../js/common.js"> </script>
-			<script type="text/javascript" src="../js/login.js"></script>
-			<script type="text/javascript" src="../js/bootstrap.js"></script>
-
-</body>
-</html>
+		</div>	

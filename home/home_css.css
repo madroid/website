@@ -3,8 +3,16 @@ body{
 	margin:0px;
 	position: absolute;
 	overflow-x: scroll;
+	width: 100%;
 }
 
+.boundary{
+	border: 1px solid black;
+}
+
+.normal_font{
+	font-size: 14px;
+}
 
 .top{
 	overflow: auto;
@@ -31,13 +39,14 @@ body{
 	moz-webkit-margin-before:0em;
 	moz-webkit-margin-after:0em;
 	moz-webkit-padding-start:0em;
+	margin-left: 0px;
 }
 
 .menu >ul > li{
 	display:inline-block;
 	border: 0px solid black;
-	padding-left:8px;
-	padding-right:8px;
+	padding-left:10px;
+	padding-right:10px;
 	width:auto;	
 }
 
@@ -67,14 +76,14 @@ body{
 	height:80px;
 	padding-top:40px;
 	padding-bottom:20px;
+	width: 100%;
+	color: white;
 }
 
 #footer_menu{
-	width:80%;
-	margin-left:auto;
-	margin-right:auto;
-	border: 0px solid white;
-	position:relative;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
 }
 #footer_menu > ul{
 	list-style:none;

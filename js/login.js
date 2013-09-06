@@ -24,7 +24,7 @@ function checkEmail(){
 	else{
     var email = escape(document.getElementById("inputEmail").value) ;
     if(email.length>0){
-      var url = "checkEmail.php?email="+email;
+      var url = "../backend/checkEmail.php?email="+email;
       request.open("POST",url,true);
       request.onreadystatechange = checkIfMailExists ;
       request.send(null);
@@ -84,7 +84,7 @@ function userLogin(){
  if(inputPasswd.length>0 && inputUsername.length>0){
   request = new createRequest();
   if(request!=null){
-   var url = "login.php?email="+inputUsername+"&passwd="+inputPasswd;
+   var url = "../backend/login.php?email="+inputUsername+"&passwd="+inputPasswd;
    request.open("POST",url,true);
    request.onreadystatechange = myAccount ;
    request.send(null);
@@ -104,7 +104,7 @@ function userRegister(){
  if(inputPasswd.length>0 && inputUsername.length>0 && confirmPass.length>0){
   if(inputPasswd==confirmPass){
 	
-    var url = "register.php?email="+inputUsername+"&passwd="+inputPasswd;
+    var url = "../backend/register.php?email="+inputUsername+"&passwd="+inputPasswd;
   request.open("POST",url,true);
   request.onreadystatechange = myAccount ;
   request.send(null);

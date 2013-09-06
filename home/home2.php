@@ -1,30 +1,28 @@
 <html language="en">
 	<head>
-		<meta charset="utf-8">
-		<title>BeyondPink | Unique Women Clothing</title>
+	
+		<?php include_once("head.php");?>		
 		<link href="home_css.css" rel="stylesheet">
-		<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-		<script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+	
+		<script type="text/javascript" src="../js/login.js"></script>
+		<script type="text/javascript" src="../js/common.js"> </script>
+
 		<script type="text/javascript">	
 			$(document).ready(function(){
 			var window_width = $(window).width();
 			var window_height = $(window).height();
 			$("#top").height(0.95*window_height);
-			$("body").width(window_width-10);
+//			$("body").width(window_width-10);
 		
-			$("body").smoothDivScroll({
-				mousewheelScrolling: "allDirections",
-				manualContinuousScrolling: true,
-				autoScrollingMode: "onStart"
-			});
 		});
 	</script>
+
 	</head>
 
 	<body>
 		
 		<div id="top" class="top">
-			<div id="top_left" class="top_left">
+			<div id="top_left" class="top_left boundary">
 				<div id="logo" class="logo">
 					<img src="../layout/logo.png" alt="BeyondPink Logo"/>
 				</div>
@@ -43,19 +41,13 @@
 
 		</div>
 
-		<div id="footer">
-			<div id="footer_menu">
-				<ul>
-					<li><a href="#">MY ACCOUNT</a></li>
-					<li><a href="#">INFORMATION</a></li>
-					<li><a href="#">CUSTOMER SERVICE</a></li>
-					<li><a href="#">EXTRAS</a></li>
-				</ul>	
-			</div>	
-			<div id="copyright">
-				Beyond Pink | Unique Women Clothing &copy 2013.
-			</div>	
-		</div>
+
+
+<!-------------------------------------------------------------------------------->
+		<?php   include_once("footer.php");	   ?>
+		<?php include_once("login_modal.php"); ?>
+<!-------------------------------------------------------------------------------->
+
 
 		<div id="bottom">
 			<div id="video">
