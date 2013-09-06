@@ -1,0 +1,69 @@
+			<div id="user_info">
+
+				<span id="user_pic">
+					<div class="user_pic"><img src="../layout/left.png"></div>
+					<div class="user_pic"><img src="../layout/profile_pic.png"></div>
+					<div class="user_pic"><img src="../layout/right.png"></div>
+				</span>	
+
+				<span id="user_name_gender">
+					<div id="user_name">NAME</div>	
+					<div id="user_gender">GENDER</div>
+				</span>		
+			</div>	
+
+			
+
+				<div id="img1" class="item">
+					<div>
+						<img src="../img/small/image1.jpg" class="img">
+					</div>	
+					<div class="title">
+						<img src="../layout/heart.png"/>
+					</div>
+					<hr>
+					<div class="description">
+						<div class="colors">
+							<div class="circle" style="background-color:#F26836"></div>
+							<div class="circle" style="background-color:#95948F"></div>
+							<div class="circle" style="background-color:#F86FED"></div>
+							<div class="circle" style="background-color:#E4E13F"></div>
+						</div>
+					</div>	
+				</div>
+
+				<div id="img2" class="item">
+					<div>
+						<img src="../img/small/image2.jpg" class="img">
+					</div>	
+					<div class="title">
+						<img src="../layout/heart.png"/>
+					</div>
+					<hr>
+					<div class="description">
+						<div class="colors">
+							<div class="circle" style="background-color:#F26836"></div>
+							<div class="circle" style="background-color:#95948F"></div>
+							<div class="circle" style="background-color:#F86FED"></div>
+							<div class="circle" style="background-color:#E4E13F"></div>
+						</div>
+					</div>	
+				</div>
+
+				<div id="img3" class="item">
+					<div>
+						<img src="../img/small/image2.jpg" class="img">
+					</div>	
+					<div class="title">
+						<img src="../layout/heart.png"/>
+					</div>
+					<hr>
+					<div class="description">
+						<div class="colors">
+							<div class="circle" style="background-color:#F26836"></div>
+							<div class="circle" style="background-color:#95948F"></div>
+							<div class="circle" style="background-color:#F86FED"></div>
+							<div class="circle" style="background-color:#E4E13F"></div>
+						</div>
+					</div>	
+				</div>
