@@ -2,7 +2,7 @@
 
 function add($img_name){
 
-	String output =  '<div id="img1" class="item">
+	$output =  '<div id="img1" class="item">
 						<div>
 							<img src="../img/small/'.$img_name.'" class="img">
 						</div>	
@@ -19,6 +19,8 @@ function add($img_name){
 							</div>
 						</div>	
 					</div>';
+
+	
 
 	echo $output;			
 

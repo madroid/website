@@ -29,7 +29,7 @@
 					<li class="active"><a href="#">Favourites</a></li>
 				</ul>	
 		</div>	
-
+		<?php include_once("new_item.php");?>
 		<div id="profile_body">
 		<table width="100%" border="0">
 			<tr class="td">
@@ -50,102 +50,17 @@
 					</div>						
 
 					<div id="non_video">
-						<div id="img1" class="item">
-							<div>
-								<img src="../img/small/image3.jpg" class="img">
-							</div>	
-							<div class="title">
-								<img src="../layout/heart.png"/>
-							</div>
-							<hr>
-							<div class="description">
-								<div class="colors">
-									<div class="circle" style="background-color:#F26836"></div>
-									<div class="circle" style="background-color:#95948F"></div>
-									<div class="circle" style="background-color:#F86FED"></div>
-									<div class="circle" style="background-color:#E4E13F"></div>
-								</div>
-							</div>	
-						</div>
+						<?php add("image3.jpg") ?>
 					</div>	
 
 				</td>
 				<td id="col_middle">
-					<div id="img1" class="item">
-						<div>
-							<img src="../img/small/image1.jpg" class="img">
-						</div>	
-						<div class="title">
-							<img src="../layout/heart.png"/>
-						</div>
-						<hr>
-						<div class="description">
-							<div class="colors">
-								<div class="circle" style="background-color:#F26836"></div>
-								<div class="circle" style="background-color:#95948F"></div>
-								<div class="circle" style="background-color:#F86FED"></div>
-								<div class="circle" style="background-color:#E4E13F"></div>
-							</div>
-						</div>	
-					</div>
-
-						<div id="img0" class="item">
-							<div>
-								<img src="../img/small/image4.jpg" class="img">
-							</div>	
-							<div class="title">
-								<img src="../layout/heart.png"/>
-							</div>
-							<hr>
-							<div class="description">
-								<div class="colors">
-									<div class="circle" style="background-color:#F26836"></div>
-									<div class="circle" style="background-color:#95948F"></div>
-									<div class="circle" style="background-color:#F86FED"></div>
-									<div class="circle" style="background-color:#E4E13F"></div>
-								</div>
-							</div>	
-						</div>
-
-
+					<?php add("image1.jpg") ?>
+					<?php add("image4.jpg") ?>
 				</td>
 				<td id="col_right">
-										<div id="img2" class="item">
-						<div>
-							<img src="../img/small/image2.jpg" class="img">
-						</div>	
-						<div class="title">
-							<img src="../layout/heart.png"/>
-						</div>
-						<hr>
-						<div class="description">
-							<div class="colors">
-								<div class="circle" style="background-color:#F26836"></div>
-								<div class="circle" style="background-color:#95948F"></div>
-								<div class="circle" style="background-color:#F86FED"></div>
-								<div class="circle" style="background-color:#E4E13F"></div>
-							</div>
-						</div>	
-					</div>
-
-					<div id="img0" class="item">
-							<div>
-								<img src="../img/small/image5.jpg" class="img">
-							</div>	
-							<div class="title">
-								<img src="../layout/heart.png"/>
-							</div>
-							<hr>
-							<div class="description">
-								<div class="colors">
-									<div class="circle" style="background-color:#F26836"></div>
-									<div class="circle" style="background-color:#95948F"></div>
-									<div class="circle" style="background-color:#F86FED"></div>
-									<div class="circle" style="background-color:#E4E13F"></div>
-								</div>
-							</div>	
-						</div>
-
+					<?php add("image2.jpg") ?>
+					<?php add("image5.jpg") ?>
 				</td>
 			</tr>
 		</table>	

@@ -81,7 +81,44 @@ body{
   border-top-left-radius: 10px;
   border-top-right-radius: 10px; 
   margin-left: 10px;
+}
 
+#profile_tabs a{
+	padding:8px 15px;
+}
+
+#profile_tabs > ul > li :after, #profile_tabs > ul > li :before{
+	background: black;
+		  width: 20px;
+		  height: 20px;
+}
+
+#profile_tabs > ul > li :before{
+	left: -10px;
+}
+
+#profile_tabs > ul > li :after{
+	right: -10px;
+}
+
+#profile_tabs > ul > li >a :after, #profile_tabs > ul > li > a :before{
+	  width: 20px; 
+		  height: 20px;
+		  -webkit-border-radius: 10px;
+		  -moz-border-radius:    10px;
+		  border-radius:         10px;
+		  background: black;
+		  
+		  z-index: 2;
+}
+
+#profile_tabs > ul > li >a :after{
+	left:-20px;	
+}
+
+
+#profile_tabs > ul > li >a :after{
+	right:-20px;
 }
 
 #profile_tabs> ul > li > a{
