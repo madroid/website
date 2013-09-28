@@ -72,9 +72,9 @@ class Populate{
 }
 
 
-$populate = new Populate();
-$res = $populate-> getCategory("Skirt");
-echo "$res";
+//$populate = new Populate();
+//$res = $populate-> getCategory("Skirt");
+//echo "$res";
 
 
 ?>

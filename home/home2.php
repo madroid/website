@@ -33,7 +33,7 @@
 
 	</head>
 
-	<body>
+	<body oncontextmenu="return false">
 		
 		<div id="top" class="top">
 			<div id="top_left" class="top_left boundary">

@@ -8,7 +8,7 @@ body{
 
 #top{
 	padding: 10px 0px 0px 10px;
-	margin-bottom: 20px;
+	
 	display: block;
 }
 
@@ -16,7 +16,7 @@ body{
 
 #cat_body{
 	width: 1250px;
-	margin-top: 50px;
+	margin-top: 90px;
 	
 }
 
@@ -25,6 +25,7 @@ body{
 	text-align: center;
 	display: inline-block;
 	vertical-align: top;
+	border-right: 2px solid rgba(0,0,0,0.2);
 }
 
 #select{
@@ -32,13 +33,14 @@ body{
 		margin-left: auto;
 	margin-right: auto;
 
+
 }
 
 #container{
 	display: inline-block;
 	padding-left: 20px;
-	border-left: 2px solid rgba(0,0,0,0.2);
-
+	
+	
 }
 
 .column{
