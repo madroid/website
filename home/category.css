@@ -1,0 +1,50 @@
+body{
+	background-color:#EDE9E6;
+	margin:0px;
+	position: absolute;
+	overflow-x: scroll;
+	width: 100%;
+}
+
+#top{
+	padding: 10px 0px 0px 10px;
+	margin-bottom: 20px;
+	display: block;
+}
+
+
+
+#cat_body{
+	width: 1250px;
+	margin-top: 50px;
+	
+}
+
+#filter{
+	width:250px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#select{
+	width: 50%;
+		margin-left: auto;
+	margin-right: auto;
+
+}
+
+#container{
+	display: inline-block;
+	padding-left: 20px;
+	border-left: 2px solid rgba(0,0,0,0.2);
+
+}
+
+.column{
+	width: 256px;
+	padding:0px 25px;
+	display: inline-block;
+	vertical-align: top;
+	
+}

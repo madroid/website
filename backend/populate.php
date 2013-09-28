@@ -10,8 +10,8 @@ class Populate{
 		require_once('connect.php');
 		$db = new DB_CONNECT();
 
-		$query = "SELECT * FROM product WHERE ptags LIKE '%$tag%'";
-		$result = mysql_query($query) or die(mysql_error());
+		$query = "SELECT * FROM product WHERE tags LIKE '%$tag%'";
+		$result = mysql_query($query) ;//or die(mysql_error());
 		$response = array();
 		$response['data'] = array();
 		if(!empty($result)){

@@ -32,12 +32,15 @@ $result_create_table_profile = mysql_query($query_create_table_profile) or die(m
 $query_create_table_product = "CREATE TABLE IF NOT EXISTS product(
                             pserial INT(11) NOT NULL auto_increment,
                             pid varchar(255),
-                            ptitle varchar(255),
-                            pcolor varchar(255),
-                            ptags text,
-                            pprice int(11),
-							ppurchase int(11) DEFAULT 0,
-							PRIMARY KEY(pserial,pid)
+                            title varchar(255),
+                            price int(11),
+                            color varchar(255),
+                            tags text,
+                            fabrics text,
+                            likes int(11) DEFAULT 0,
+				purchase int(11) DEFAULT 0,
+                            pname varchar(255),
+				PRIMARY KEY(pserial,pid)
                             )ENGINE=InnoDB AUTO_INCREMENT=0";
 							
 $result_product_table = mysql_query($query_create_table_product) or die(mysql_error());							

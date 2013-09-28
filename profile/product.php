@@ -11,7 +11,7 @@ if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['color']) &&
 	$price = $_POST['price'];
 	if( $_FILES['file']['name'] != "" )
 	{
-	   move_uploaded_file($_FILES["file"]["tmp_name"], "../img/".$fname);
+	   move_uploaded_file($_FILES["file"]["tmp_name"], "../img/small/".$fname);
 	}
 	else
 	{
@@ -22,9 +22,12 @@ if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['color']) &&
 			 "VALUES			 ('$fname','$title', '$color', '$tags', '$price')";
 
 	$query_exe = mysql_query($query) or die(mysql_error());
+	echo "product inserted successfully!"; 
 }
 else{
 	echo "Some error occurred 5";
 	
 }
+
+
 ?>
