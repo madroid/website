@@ -1,8 +1,8 @@
 #footer{
 	background-color: black;
 	font-size:12px;
-	height:80px;
-	padding-top:40px;
+	height:60px;
+	padding-top:20px;
 	padding-bottom:20px;
 	width: 100%;
 	color: white;
@@ -204,4 +204,12 @@ ul.sub_menu> li > a {
 ul.sub_menu> li > a:hover {
 	padding-left: 20px;
 	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.heart{
+	cursor: pointer;
+}
+
+.cursor{
+	cursor: pointer;
 }

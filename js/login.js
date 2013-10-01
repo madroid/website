@@ -3,7 +3,7 @@ window.onload = initLoginInterfacePage ;
 var isRegistered = true ;
 var success_img = "../img/form/success.png";
 var error_img = "../img/form/error.png";
-
+var email = "0";
 function initLoginInterfacePage(){
   document.getElementById("inputEmail").onblur = checkEmail;
   // document.getElementById("inputPassword").onblur = checkPassword;
@@ -28,14 +28,6 @@ function checkEmail(){
       request.open("POST",url,true);
       request.onreadystatechange = checkIfMailExists ;
       request.send(null);
-      // if(validateEmail(email)){
-      //   $('#statusEmail').attr("src",success_img);
-      //   $('#statusEmail').show();
-      // }
-      // else{
-      //   $('#statusEmail').attr("src",error_img);
-      //   $('#statusEmail').show();
-      // }
     }
     else{
       // $('#statusEmail').hide();
@@ -85,6 +77,7 @@ function userLogin(){
   request = new createRequest();
   if(request!=null){
    var url = "../backend/login.php?email="+inputUsername+"&passwd="+inputPasswd;
+   
    request.open("POST",url,true);
    request.onreadystatechange = myAccount ;
    request.send(null);
@@ -122,16 +115,18 @@ else{
 }
 
 function myAccount(){
+	
   if(request.readyState==4 && request.status==200){
     var jObj = JSON.parse(request.responseText);
     if(jObj.success=="1"){
-      if(jObj.name!=null){
-       document.getElementById("username").innerHTML=jObj.name;
-      }
-      else{
-       document.getElementById("username").innerHTML="Anon"; 
-      }
-
+		
+      // if(jObj.name!=null){
+       // document.getElementById("username").innerHTML=jObj.name;
+      // }
+      // else{
+       // document.getElementById("username").innerHTML="Anon"; 
+      // }
+		set_email(jObj.email);
       $('#inputEmail').val("");
       $('#inputPassword').val("");
       if(!isRegistered){
@@ -139,6 +134,7 @@ function myAccount(){
       }
       $('#signin').hide();
       $('#login_box').modal('hide');
+	  alert("done");
     }
   }
 }

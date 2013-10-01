@@ -1,7 +1,6 @@
 <html language="en">
 	<head>
-	
-		<?php include_once("head.php");?>		
+		<?php include_once("head.php"); ?>		
 		<link href="home_css.css" rel="stylesheet">
 	
 		<script type="text/javascript" src="../js/login.js"></script>
@@ -11,7 +10,7 @@
 			$(document).ready(function(){
 			var window_width = $(window).width();
 			var window_height = $(window).height();
-			$("#top").height(0.95*window_height);
+			$("#top").height(0.93*window_height);
 			$(function(){
 			$(".dropdown").mouseenter(function(){
 				$('.sub_menu').stop(false, true).hide();
@@ -33,8 +32,8 @@
 
 	</head>
 
-	<body oncontextmenu="return false">
-		
+	<body>
+		<?php session_start(); ?>	
 		<div id="top" class="top">
 			<div id="top_left" class="top_left boundary">
 				<div id="logo" class="logo">
@@ -184,5 +183,7 @@
 			</tr>	
 		<table>	
 	</div>
+	
+
 	</body>
 </html>

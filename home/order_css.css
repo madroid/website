@@ -1,0 +1,41 @@
+#container{
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	border:0px solid black;
+	padding: 30px 0px;
+
+}
+
+.attr_name{
+	width: 150px;
+	display: inline-block;
+}
+
+.inputbox{
+	display: inline-block;
+}
+
+.row1{
+	margin-bottom: 10px;
+}
+
+#address{
+	margin-top: 60px;
+}
+
+#address textarea{
+	border-radius: 0;
+}
+
+.row1 select{
+	background-color: white;
+	width: 206px;
+}
+
+#text_payment{
+	font-size: 12px;
+	margin-top: 30px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid gray;
+}

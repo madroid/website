@@ -1,5 +1,5 @@
 body{	
-	background-color:#EDE9E6;
+	background-color:white;
 	margin:0px;
 	position: absolute;
 	
@@ -33,7 +33,7 @@ body{
 
 
 #profile_tabs{
-	background-color: white;
+	background-color: #EDE9E6;
 	color:white;
 	font-size: 14px;
 	height: 30px;

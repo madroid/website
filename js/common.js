@@ -1,3 +1,4 @@
+/* HTTP Request */
 function createRequest() {
   try {
     request = new XMLHttpRequest();
@@ -14,3 +15,11 @@ function createRequest() {
   }
   return request;
 }
+
+/* --------HTTP Request----- */
+
+/* footer.php */
+
+
+
+/* ---------footer.php--------- */

@@ -1,4 +1,5 @@
-<?php
+<?php 
+session_start();
 
 $response = array();
 
@@ -15,8 +16,13 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['passwd'])){
 		if(mysql_num_rows($result_user_info)>0){
 			$row = mysql_fetch_assoc($result_user_info);
 			if($row['passwd'] == $passwd) {
+				session_start();
 				$response['success'] = 1 ;
 				$response['message'] = "Login Successful";
+
+				$_SESSION['email'] = $email;
+				$response['email'] = $email;
+
 				if($row['isset_firstname']==1){
 					$response['name'] = $row['firstname'];
 				}
@@ -26,7 +32,7 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['passwd'])){
 			}
 			else{
 				$response['success'] = 2 ;
-				$response['message'] = "Login failed";	
+				$response['message'] = "Login failed";
 			}
 		}
 		else{

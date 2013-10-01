@@ -1,3 +1,5 @@
+<?php  session_start(); ?>
+
 <html language="en">
 	<head>
 	
@@ -7,7 +9,7 @@
 		<script type="text/javascript">	
 
 		function addItem(pid,ptitle,pprice,pcolor,pfabrics,pname){
-					var str = '<div id="item_'+pid+'" class="item"><div><img id="img_'+pid+'" src="../img/large/'+pname+'" class="img"></div><div class="title"><img id="fav_'+pid+'" src="../layout/heart.png"/></div><hr><div class="description"><div class="colors">';
+					var str = '<div id="item_'+pid+'" class="item"><div><a href="item.php" onclick="set_session_elements('+pid+')"><img id="img_'+pid+'" src="../img/large/'+pname+'" class="img"></a></div><div class="title"><img id="fav_'+pid+'" src="../layout/heart.png" class="heart" onclick="addToFav('+pid+')"/></div><hr><div class="description"><div class="colors">';
 
 					var arr = pcolor.split(",");
 					for(var j1=0;j1<arr.length-1;j1++){
@@ -88,30 +90,75 @@
 				</div>
 				<div id="cat_right" class="column">
 				</div>
+				<br>
+				<div id="loadmore" style="display:block"><center><button id="loadmoreitems" class="btn btn-large" onclick="more()">...More...</button></center></div>
+				<br>
 			</div>	
 
 			<script type="text/javascript">
+				var nomore = false;
 				
-				var data = JSON.parse(<?php echo json_encode($res); ?>);
-				if(data.success==1){
-					var n =data.data.length;
-					var i =0;
-					for(i=0;i<n;i++){
+				function loadItems(nextX,total){
+					for(i;i<total && i<nextX;i++){
 						var left_ht = $("#cat_left").height();
 						var mid_ht = $("#cat_middle").height();
 						var right_ht = $("#cat_right").height();
 						if(left_ht<=mid_ht && left_ht<=right_ht){
-							$("#cat_left").append(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname']));
+							
+							$(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname'])).appendTo("#cat_left").hide().fadeIn(560);
+
 						}
 						else if(mid_ht<=left_ht && mid_ht<=right_ht){
-							$("#cat_middle").append(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname']));
+							$(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname'])).appendTo("#cat_middle").hide().fadeIn(560);
 						}
 						else{
-							$("#cat_right").append(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname']));
-						}
+							$(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname'])).appendTo("#cat_right").hide().fadeIn(560);						}
+						
 					}
+
+					if(i>=n){
+						$("#loadmoreitems").addClass("disabled");
+					}
+
+
+				}
+
+				var data1 = <?php echo json_encode($res); ?>;
+				var data = JSON.parse(data1);
+				var n = 0;
+				if(data.success==1){
+					 n =data.data.length;
+					var i =0;
+					loadItems(i+9,n);
 					
 				}
+
+				function more(){
+						loadItems(i+9,n);
+				}	
+
+				function addToFav(id){
+					alert(id);
+				}
+
+				function set_session_elements(item_id){
+					var answer = 0;
+					for(var j11=0;j11<n;j11++){
+						if(data.data[j11]['pid']==item_id){
+							answer = j11;
+							break;
+						}
+					}
+					$.ajax({
+						type:"POST",
+						url: "session.php",
+						data:"item_id="+answer+"&item_list="+data1,
+						success:function(html){
+							
+						}
+					});
+				}
+
 
 			</script>
 		</div>	
