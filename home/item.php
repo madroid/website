@@ -8,18 +8,7 @@
 		<script type="text/javascript">
 			var new_item_id;
 			var data;
-			function moneyString(money){
-				var money_len = money.length;
-				if(money_len<=3){
-					return money;
-				}
-				else if(money_len==4) {
-					return (money.substr(0,1)+","+money.substr(1));
-				}
-				else{
-					return (money.substr(0,2)+","+money.substr(2));
-				}
-			}
+			
 
 			function loadNewData(){
 				$("#main_img").attr('src','../img/large/'+data.data[new_item_id]['pname']);
@@ -171,22 +160,23 @@
 				var cart_item_size = $("#select_size").val();
 				var cart_item_qty = $("#select_qty").val();
 				if(cart_item_size=="Select size"){
-					alert(10);
+					alert("Please select the size");
 				}
 				else if(cart_item_qty == "Select quantity"){
-					alert(11);
+					alert("Please select the quantity");
 				}
 				else{
+					$("#select_size").val("Select size");
+					$("#select_qty").val("Select quantity");
 					$.ajax({
 						type:'POST',
 						url:'session.php',
-						data:'item_id='++"&item_list="+item_list
+						data:'item_id='+data.data[new_item_id]['pid']+"&item_price="+data.data[new_item_id]['price']+"&item_size="+cart_item_size+"&item_qty="+cart_item_qty+"&item_name="+data.data[new_item_id]['pname'],
+						success:function(html){
+							alert(html);
+						}
 					});	
 				}
-				/*var cart_item_id = item_id;
-				var cart_item_size = 
-				
-				*/
 			}
 
 		</script>

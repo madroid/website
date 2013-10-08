@@ -1,4 +1,5 @@
 <?php session_start();
+	print_r($_SESSION['cart']);
 ?>
 <html language="en">
 	<head>
@@ -8,7 +9,12 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$(".layer").hide();
+				var mycart = <?php echo json_encode($_SESSION['cart']); ?>;
+				for(var i=0;i<mycart.length;i++){
+					$('#container').append('<div id="'+mycart[i]['item_id']+'" class="cart_item"><div class="cart_image"><img src ="../img/large/'+mycart[i]['item_name']+'"></div><div class="cart_price">Rs. <span>'+moneyString(mycart[i]['item_price'])+'</span></div><div class="cart_specs">size '+mycart[i]['item_size']+' | quantity '+mycart[i]['item_qty']+'</div><div class="cart_edit cursor">EDIT</div></div>');
+				}
 			});
+
 		</script>
 	</head>	
 
@@ -33,32 +39,18 @@
 		</div>	
 
 		<div id="container">
-			<div class="cart_item">
-				<div class="cart_image">
-					<img src ="../img/large/BeyondPink_1006_image6.jpg">
-					
-				</div>
-				<div class="cart_price">
-					Rs. <span>1,200</span>
-				</div>	
-				<div class="cart_specs">
-					size S | quantity 4
-				</div>
-				<div class="cart_edit cursor">
-					EDIT
-				</div>	
-			</div>	
+			
 
-			<div id="checkout">
-				<div id="proceed">
-					PROCEED TO CHECKOUT
-				</div>	
-			</div>	
 
 
 
 		</div>	
 	
+			<div id="checkout">
+				<div id="proceed">
+					PROCEED TO CHECKOUT
+				</div>	
+			</div>	
 		<script type="text/javascript">
 			$(".cart_edit").on('click',function(){
 

@@ -23,3 +23,16 @@ function createRequest() {
 
 
 /* ---------footer.php--------- */
+
+function moneyString(money){
+				var money_len = money.length;
+				if(money_len<=3){
+					return money;
+				}
+				else if(money_len==4) {
+					return (money.substr(0,1)+","+money.substr(1));
+				}
+				else{
+					return (money.substr(0,2)+","+money.substr(2));
+				}
+}

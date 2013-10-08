@@ -1,3 +1,27 @@
+// Individual cart element
+
+<div class="cart_item">
+	<div class="cart_image">
+		<img src ="../img/large/BeyondPink_1006_image6.jpg">
+		
+	</div>
+	<div class="cart_price">
+		Rs. <span>1,200</span>
+	</div>	
+	<div class="cart_specs">
+		size S | quantity 4
+	</div>
+	<div class="cart_edit cursor">
+		EDIT
+	</div>	
+</div>
+
+// =>    '<div class="cart_item"><div class="cart_image"><img src ="../img/large/BeyondPink_1006_image6.jpg"></div><div class="cart_price">Rs. <span>1,200</span></div><div class="cart_specs">size S | quantity 4</div><div class="cart_edit cursor">EDIT</div></div>'
+
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+
+// Layer element
+
 	<div class="layer">
 	
 		<div class="cart_edit_hover1">
