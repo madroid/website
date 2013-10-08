@@ -1,4 +1,8 @@
-<?php  session_start(); ?>
+<?php  
+if(session_id() == '') {
+    session_start();
+}
+ ?>
 
 <html language="en">
 	<head>
@@ -154,7 +158,7 @@
 						url: "session.php",
 						data:"item_id="+answer+"&item_list="+data1,
 						success:function(html){
-							
+							alert(html);
 						}
 					});
 				}

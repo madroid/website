@@ -29,7 +29,7 @@
 		</div>
 		<!-- footer element of the login box-->
 		<div class="modal-footer">
-			<button type="submit" id="button_sign_in" class="btn btn-primary btn-large" onclick="userLogin()">Sign in</a>
+			<button type="submit" id="button_sign_in" class="btn btn-primary btn-large" onclick="signin()">Sign in</a>
 				<button type="submit" id="button_sign_up" class="btn btn-primary btn-large" onclick="userRegister()">Sign up</a>
 				</div>
 

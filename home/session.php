@@ -1,7 +1,9 @@
 <?php
-session_start();
+if(session_id() == '') {
+    session_start();
+}
 
-if(isset($_POST['item_id']) && $_POST['item_list']){
+if( isset($_POST['item_id']) && isset($_POST['item_list']) ){
 	
 	$_SESSION['item_id'] = $_POST['item_id'];
 	$_SESSION['item_list'] = $_POST['item_list'];

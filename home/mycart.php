@@ -1,11 +1,14 @@
 <?php session_start();
- ?>
+?>
 <html language="en">
 	<head>
 		<?php include_once("head.php"); ?>		
 		<link href="mycart_css.css" rel="stylesheet">
 		<link href="item_common_css.css" rel="stylesheet">
 		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".layer").hide();
+			});
 		</script>
 	</head>	
 
@@ -32,34 +35,8 @@
 		<div id="container">
 			<div class="cart_item">
 				<div class="cart_image">
-					<img src ="../img/large/BeyondPink_1004_image4.jpg">
-					<div class="cart_edit_hover">
-						<center><div class="cart_edit_option">
-							<div>
-								<select id="select_size">
-									<option>S</option>
-									<option>M</option>
-									<option>L</option>
-									<option>X</option>
-								</select>	
-							</div>
-							<div>
-								<select id="select_qty">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>	
-							</div>
-						</div>
-						<div class="buttons">
-							<div class="hover_button1" > Done
-							</div>
-							<div class="hover_button2" > Cancel
-							</div>
-						</div>	
-					</center>
-					</div>
+					<img src ="../img/large/BeyondPink_1006_image6.jpg">
+					
 				</div>
 				<div class="cart_price">
 					Rs. <span>1,200</span>
@@ -67,7 +44,7 @@
 				<div class="cart_specs">
 					size S | quantity 4
 				</div>
-				<div class="cart_edit">
+				<div class="cart_edit cursor">
 					EDIT
 				</div>	
 			</div>	
@@ -84,6 +61,19 @@
 	
 		<script type="text/javascript">
 			$(".cart_edit").on('click',function(){
+
+				var elem = $(this).parent().children('.cart_image');
+				elem.append('<div class="layer"><div class="cart_edit_hover1"></div>	<div class="cart_edit_hover2"><div class="cart_edit_option"><div><select id="select_size"><option selected="true" style="display:none;">Select size</option><option>S</option><option>M</option><option>L</option><option>X</option></select>	</div><div><select id="select_qty"><option selected="true" style="display:none;">Select quantity</option><option>1</option><option>2</option><option>3</option><option>4</option></select>	</div><div class="buttons"><div class="hover_button1 cursor" > Done</div><div class="hover_button2 cursor" > Cancel</div></div>	</div></div></div>');
+
+				var done = elem.children('.layer').children('.cart_edit_hover2').children('.cart_edit_option').children('.buttons').children('.hover_button1');
+				var cancel = elem.children('.layer').children('.cart_edit_hover2').children('.cart_edit_option').children('.buttons').children('.hover_button2');
+				done.on('click',function(){
+					alert(1);
+				});
+
+				cancel.on('click',function(){
+					elem.children('.layer').remove();
+				});			
 
 			});
 		</script>

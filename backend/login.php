@@ -1,10 +1,13 @@
 <?php
+if(session_id() == '') {
+    session_start();
+}
 
 $response = array();
 
-if(isset($_REQUEST['email']) && isset($_REQUEST['passwd'])){
-	$email = $_REQUEST['email'] ;
-	$passwd = sha1(md5($_REQUEST['passwd'])) ;
+if(isset($_POST['email']) && isset($_POST['passwd'])){
+	$email = $_POST['email'] ;
+	$passwd = sha1(md5($_POST['passwd'])) ;
 	
 	require_once('connect.php');
 	$db = new DB_CONNECT();
@@ -17,6 +20,8 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['passwd'])){
 			if($row['passwd'] == $passwd) {
 				$response['success'] = 1 ;
 				$response['message'] = "Login Successful";
+				$_SESSION['email'] = $email;
+				$_SESSION['cart'] = array();
 				if($row['isset_firstname']==1){
 					$response['name'] = $row['firstname'];
 				}

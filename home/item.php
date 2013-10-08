@@ -28,7 +28,7 @@
 			}
 
 			$(document).ready(function(){
-				$('body').append('<div class="checkout"><img id="checkout" src="../img/item/cart.png"/></div>');
+				$('body').append('<div class="checkout"><a href="mycart.php"><img id="checkout" src="../img/item/cart.png"/></a></div>');
 				var window_width = $(window).width() -  $(".checkout").width();
 				var window_height = $(window).height() -  $(".checkout").height();
 				$(".checkout").css("top",window_height-145);
@@ -99,12 +99,14 @@
 				</div>
 				<div id="options">
 					<select id="select_size" style="margin-bottom:0px;width:120px">
+						<option selected="true" style="display:none;">Select size</option>
 						<option>S</option>
 						<option>M</option>
 						<option>L</option>
 						<option>X</option>
 					</select>	
 					<select id="select_qty" style="margin-bottom:0px;width:120px">
+						<option selected="true" style="display:none;">Select quantity</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -112,8 +114,8 @@
 					</select>	
 				</div>	
 				<div id="button_add">
-					<img src="../img/item/add_to_bag.png" class="cursor" onclick="addToCart()">
-				</div>	
+					<img src="../img/item/add_to_bag.png" class="cursor disabled" onclick="addToCart()">
+				</div>
 			</div>	
 
 		</div>	
@@ -166,7 +168,25 @@
 			}
 
 			function addToCart(){
-				$('#select_size').tooltip("show");
+				var cart_item_size = $("#select_size").val();
+				var cart_item_qty = $("#select_qty").val();
+				if(cart_item_size=="Select size"){
+					alert(10);
+				}
+				else if(cart_item_qty == "Select quantity"){
+					alert(11);
+				}
+				else{
+					$.ajax({
+						type:'POST',
+						url:'session.php',
+						data:'item_id='++"&item_list="+item_list
+					});	
+				}
+				/*var cart_item_id = item_id;
+				var cart_item_size = 
+				
+				*/
 			}
 
 		</script>

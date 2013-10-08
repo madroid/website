@@ -1,3 +1,8 @@
+<?php
+if(session_id() == '') {
+    session_start();
+}
+?>
 <html language="en">
 	<head>
 		<?php include_once("head.php"); ?>		
@@ -10,7 +15,7 @@
 			$(document).ready(function(){
 			var window_width = $(window).width();
 			var window_height = $(window).height();
-			$("#top").height(0.93*window_height);
+			$("#top").height(window_height-40);
 			$(function(){
 			$(".dropdown").mouseenter(function(){
 				$('.sub_menu').stop(false, true).hide();
@@ -28,12 +33,15 @@
 
 
 		});
+
+			
+
 	</script>
 
 	</head>
 
 	<body>
-		<?php session_start(); ?>	
+		
 		<div id="top" class="top">
 			<div id="top_left" class="top_left boundary">
 				<div id="logo" class="logo">
@@ -41,22 +49,22 @@
 				</div>
 				<div id="menu" class="menu">
 					<ul>	
-						<li><a href="#">Women</a></li>.
-						<li class="dropdown"><a href="#">Bottom</a>
+						<li><a href="category.php?tag=Women">Women</a></li>.
+						<li class="dropdown"><a href="category.php?tag=Bottom">Bottom</a>
 							<ul class="sub_menu">
-								<li><a href="#">Pant</a></li>
-								<li><a href="#">Shorts</a></li>
-								<li><a href="#">Skirts</a></li>
+								<li><a href="category.php?tag=Pant">Pant</a></li>
+								<li><a href="category.php?tag=Shorts">Shorts</a></li>
+								<li><a href="category.php?tag=Skirts">Skirts</a></li>
 							</ul>	
 						</li>.
-						<li><a href="#">Jumpsuites</a></li>.
-						<li><a href="#">Footwears</a></li>.
-						<li><a href="#">Bellerinas</a></li>.
-						<li class="dropdown"><a href="#">Winter Wear</a>
+						<li><a href="category.php?tag=Jumpsuites">Jumpsuites</a></li>.
+						<li><a href="category.php?tag=Footwear">Footwears</a></li>.
+						<li><a href="category.php?tag=Bellerinas">Bellerinas</a></li>.
+						<li class="dropdown"><a href="category.php?tag=Winter Wear">Winter Wear</a>
 							<ul class="sub_menu">
-								<li><a href="#">Cardigan</a></li>
-								<li><a href="#">Jacket</a></li>
-								<li><a href="#">Sweater</a></li>
+								<li><a href="category.php?tag=Cardigan">Cardigan</a></li>
+								<li><a href="category.php?tag=Jacket">Jacket</a></li>
+								<li><a href="category.php?tag=Sweater">Sweater</a></li>
 							</ul>	
 						</li>.
 						<li><a href="#">Special Requests</a></li>.
@@ -69,8 +77,8 @@
 
 
 <!-------------------------------------------------------------------------------->
-		<?php   include_once("footer.php");	   ?>
 		<?php include_once("login_modal.php"); ?>
+		<?php   include_once("footer.php");	   ?>
 <!-------------------------------------------------------------------------------->
 	
 	<div id="bottom">
@@ -107,17 +115,37 @@
 						<div>
 							<img src="../img/small/image1.jpg" class="img">
 						</div>	
-						<div class="title">
-							<img src="../layout/heart.png"/>
-						</div>
-						<hr>
-						<div class="description">
+						
+						<div class="color_like">
 							<div class="colors">
-								<div class="circle" style="background-color:#F26836"></div>
-								<div class="circle" style="background-color:#95948F"></div>
-								<div class="circle" style="background-color:#F86FED"></div>
-								<div class="circle" style="background-color:#E4E13F"></div>
+								<div class="available_colors">
+									Available colors
+								</div>
+								<div>
+									<div class="circle" style="background-color:#F26836"></div>
+									<div class="circle" style="background-color:#95948F"></div>
+									<div class="circle" style="background-color:#F86FED"></div>
+									<div class="circle" style="background-color:#E4E13F"></div>
+								</div>
 							</div>
+							<div class="like">
+								<div class="heart">
+									<img src="../layout/heart.png"/>
+								</div>
+								<div>
+									99 People like this
+								</div>
+							</div>
+						</div>
+						
+						<div class="description">
+							<div class="price">
+								Rs. 1,000
+							</div>
+							<div class="title">
+								Sexylady Part 1 ;)
+							</div>
+
 						</div>	
 					</div>
 

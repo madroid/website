@@ -1,6 +1,6 @@
 		<div id="top">
 			<div id="logo" class="logo">
-					<img src="../layout/logo.png" alt="BeyondPink Logo"/>
+					<a href="home2.php"><img src="../layout/logo.png" alt="BeyondPink Logo"/></a>
 				</div>
 				<div id="menu" class="menu">
 					<ul>	

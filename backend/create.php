@@ -55,11 +55,21 @@ $query_create_uploads_table = "CREATE TABLE IF NOT EXISTS uploads(
 $result_uploads_table = mysql_query($query_create_uploads_table) or die(mysql_error());
 
 
-$query_create_home_table = "CREATE TABLE IF NOT EXISTS home(
-							pid varchar(255),
-							PRIMARY KEY(pid)
-							)ENGINE=InnoDB";
-//$result_home_table = mysql_query($query_create_home_table);
+$query_create_table_home = "CREATE TABLE IF NOT EXISTS home(
+                            pserial INT(11) NOT NULL auto_increment,
+                            pid varchar(255),
+                            title varchar(255),
+                            price int(11),
+                            color varchar(255),
+                            tags text,
+                            fabrics text,
+                            likes int(11) DEFAULT 0,
+                            purchase int(11) DEFAULT 0,
+                            pname varchar(255),
+                            PRIMARY KEY(pserial,pid)
+                            )ENGINE=InnoDB AUTO_INCREMENT=0";
+
+$result_home_table = mysql_query($query_create_table_home) or die(mysql_error());
 
 $query_create_var_table = "CREATE TABLE IF NOT EXISTS vars(
 							var_name varchar(250) NOT NULL,
@@ -70,8 +80,14 @@ $query_create_var_table = "CREATE TABLE IF NOT EXISTS vars(
 
 $result_var_table = mysql_query($query_create_var_table) or die(mysql_error());
 	
+
+
 $query_index = "CREATE UNIQUE INDEX pindex ON product (pid)";
 	
+//mysql_query($query_index);
+
+
+
 echo "Script ran successfully!";
 
 ?>
