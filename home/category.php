@@ -6,10 +6,13 @@ if(session_id() == '') {
 
 <html language="en">
 	<head>
-	
+			
 		<?php include_once("head.php");?>		
 		<link href="category.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/jquery-ui.css" />
+		
 		<script src="../js/jquery.lazyload.min.js" type="text/javascript"></script>
+		
 		<script type="text/javascript">	
 
 		function addItem(pid,ptitle,pprice,pcolor,pfabrics,pname){
@@ -27,7 +30,7 @@ if(session_id() == '') {
 
 
 			$(document).ready(function(){
-
+				$("#all_category").attr("checked",true);
 			$(".dropdown").mouseenter(function(){
 				$('.sub_menu').stop(false, true).hide();
 
@@ -41,6 +44,24 @@ if(session_id() == '') {
 			});
 
 		});
+					$(function() {
+					    $( "#slider-range" ).slider({
+					      range: true,
+					      min: 0,
+					      max: 100,
+					      values: [ 0, 100 ],
+					      animate:"fast",
+					      step:1,
+					      slide: function( event, ui ) {
+					        $("#value_left").html("Rs. "+ui.values[0]*50);
+					        $("#value_right").html("Rs. "+ui.values[1]*50);
+					       
+					      },
+					      stop: function (event,ui){
+					      	 filter_items();
+					      }
+					    });
+					  });
 
 		</script>
 
@@ -56,34 +77,113 @@ if(session_id() == '') {
 		<?php include_once("gen_header.php") ?>		
 
 		<div id="cat_body">
-			<div id="filter">
-				<h4>Filter Your Items</h4>
-				<div class="accordion" id="accordion2">
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="sign1"> [ &nbsp; <span id="price" class="sign"> - </span>&nbsp; ] &nbsp;&nbsp;&nbsp; Price</a>
-						</div>
-						<div id="collapseOne" class="accordion-body collapse in">	
-							<div class="accordion-inner">
-								<div id="select">
-									<label class="checkbox">
-										<input type="checkbox"> Below 1000</input>
-									</label>	
-									<label class="checkbox">
-										<input type="checkbox"> 1000 - 1500</input>
-									</label>	
-									<label class="checkbox">
-										<input type="checkbox"> 1500 - 2000</input>
-									</label>	
-									<label class="checkbox">
-										<input type="checkbox"> Above 2000</input>
-									</label>
-									<button class="btn btn-primary" type="button">Filter</button>
-								</div>	
-							</div>	
-						</div>	
-					</div>	
-				</div>	
+			<div id="filter_table">
+				<div class="filter_container">
+					<div class="filter_head">
+						Price limit
+					</div>
+					<div class="filter_body" style="padding-top:20px;">
+						  <div id="slider-range"></div>
+						  <div id="slider-values">
+						  		<div id="value_left">Rs. 0</div>
+						  		<div id="value_right">Rs. 5000</div>
+						  </div>
+					</div>
+				</div>
+
+				<div id="filter_color" class="filter_container">
+					<div class="filter_head">
+						Select Color
+					</div>
+					<div class="filter_body">
+						  <div class="single_color">
+						  		<div>Red</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color1"></div>
+						  </div>
+						  <div class="single_color">
+						  		<div>Green</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color2"></div>
+						  </div>
+						  <div class="single_color">
+						  		<div>Blue</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color3"></div>
+						  </div>
+						  <div class="single_color">
+						  		<div>Pink</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color3"></div>
+						  </div>
+						  <div class="single_color">
+						  		<div>Black</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color3"></div>
+						  </div>
+						  <div class="single_color">
+						  		<div>White</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color3"></div>
+						  </div>
+						  <div class="single_color">
+						  		<div>Grey</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color3"></div>
+						  </div>
+						  <div class="single_color">
+						  		<div>Yellow</div>
+						  		<div class="color_option"><input class="check" type="checkbox" name="color3"></div>
+						  </div>
+					</div>
+				</div>
+
+				<div id="filter_offers" class="filter_container">
+					<div class="filter_head">
+						Select Offers
+					</div>
+					<div class="filter_body">
+						  <div> Above: </div>
+						  <div id="offers_list">
+						  		<div class="single_offer">
+						  			<div><input class="radio_" type="radio" name="10"></div>
+						  			<div class="offer_val">10%</div>
+						  		</div>
+						  		<div class="single_offer">
+						  			<div><input class="radio_" type="radio" name="20"></div>
+						  			<div class="offer_val">20%</div>
+						  		</div>
+						  		<div class="single_offer">
+						  			<div><input class="radio_" type="radio" name="30"></div>
+						  			<div class="offer_val">30%</div>
+						  		</div>
+						  		<div class="single_offer">
+						  			<div><input class="radio_" type="radio" name="40"></div>
+						  			<div class="offer_val">40%</div>
+						  		</div>
+						  </div>
+					</div>
+				</div>
+
+				<div id="filter_category" class="filter_container">
+					<div class="filter_head">
+						Select Category
+					</div>
+					<div class="filter_body">
+						  <div style="vertical-align:bottom;margin-bottom:5px;"><div style="display:inline-block;vertical-align:top"><input id="all_category" type="radio" name="all"></div><div style="display:inline-block">&nbsp;&nbsp;All</div></div>
+						  <div id="category_list">
+						  		<div class="single_category">
+						  			<div class="cat_checkbox"><input class="cat_check" type="checkbox" name="Pant"></div>
+						  			<div class="cat_name">Pants</div>
+						  		</div>
+						  		<div class="single_category">
+						  			<div class="cat_checkbox"><input class="cat_check" type="checkbox" name="ardigan"></div>
+						  			<div class="cat_name">Cardigans</div>
+						  		</div>
+						  		<div class="single_category">
+						  			<div class="cat_checkbox"><input class="cat_check" type="checkbox" name="top"></div>
+						  			<div class="cat_name">Tops</div>
+						  		</div>
+						  		<div class="single_category">
+						  			<div class="cat_checkbox"><input class="cat_check" type="checkbox" name="bottom"></div>
+						  			<div class="cat_name">Bottoms</div>
+						  		</div>
+						  </div>
+					</div>
+				</div>
 
 			</div>
 
@@ -158,10 +258,122 @@ if(session_id() == '') {
 						url: "session.php",
 						data:"item_id="+answer+"&item_list="+data1,
 						success:function(html){
-							alert(html);
+							//alert(html);
 						}
 					});
 				}
+
+				function selected_colors(){
+					var selected_colors_list = new Array();
+					$("#filter_color input:checked").each(function(){
+						selected_colors_list.push($(this).attr('name'));
+					});
+					return selected_colors_list ;
+				}
+
+				function selected_category(){
+					var selected_category_list = new Array();
+					$("#category_list input:checked").each(function(){
+						selected_category_list.push($(this).attr('name'));
+					});
+					return selected_category_list ;	
+				}
+
+				$(".check").change(function(){
+					filter_items();
+				});
+
+				$("#all_category").change(function(){
+					if($(this).is(":checked")){
+						$("#category_list input:checked").each(function(){
+							$(this).attr('checked',false);
+						});
+						filter_items();
+					}
+				});
+
+				$(".cat_check").change(function(){
+					if($(this).is(":checked")){
+						$("#all_category").attr("checked",false);
+					}
+					filter_items();
+				});
+
+				function string_price(){
+					return ("price>="+$("#slider-range").slider("values",0)*50+" AND price<="+$("#slider-range").slider("values",1)*50);
+				}
+
+				function string_color(){
+					var color_array = selected_colors();
+					if(color_array.length==0){
+						return "" ;
+					}
+					else{
+						var return_str = "";
+						var i11=0;
+						for(i11;i11<color_array.length-1;i11++){
+							return_str+= "color LIKE %"+color_array[i11]+"% OR ";
+						}
+						return_str+= "color LIKE %"+color_array[i11]+"%";
+
+						return return_str;
+					}
+				}
+
+				function string_category(){
+					var category_array = selected_category();
+					if(category_array.length==0){
+						return "";
+					}
+					else{
+						var return_str = "";
+						var i11=0;
+						for(i11;i11<category_array.length-1;i11++){
+							return_str+= "tags LIKE '%"+category_array[i11]+"%' OR ";
+						}
+						return_str+= "tags LIKE '%"+category_array[i11]+"%'";
+
+						return return_str;	
+					}
+				}
+
+				function make_query_string(){
+					var query_string = "("+string_price()+")";
+					var color_string = string_color();
+					var category_string = string_category();
+					if(color_string.length>1){
+						query_string+=" AND ("+color_string+")";
+					}
+					if(category_string.length>1){
+						query_string+=" AND ("+category_string+")";
+					}
+					return query_string;
+				}
+
+				function filter_items(){
+					
+					
+					$.ajax({
+						type:"POST",
+						url:"filter_category.php",
+						data:"filter_products="+make_query_string(),
+						success:function(json){
+							data1 = json;
+							data = JSON.parse(data1);
+							n = 0;
+							$("#cat_left").empty();
+							$("#cat_middle").empty();
+							$("#cat_right").empty();
+							if(data.success==1){
+								 n =data.data.length;
+								 i =0;
+								 loadItems(i+9,n);
+							}
+
+						}
+					});
+				}
+
 
 
 			</script>

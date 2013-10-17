@@ -1,5 +1,5 @@
 body{
-	background-color:#EDE9E6;
+	background-color:white;
 	margin:0px;
 	position: absolute;
 	overflow-x: scroll;
@@ -49,6 +49,7 @@ body{
 	border: 0px solid black;
 	padding-left: 150px;
 	position: relative;
+	background-color: #EDE9E6;
 
 }
 

@@ -20,17 +20,19 @@ body{
 	
 }
 
-#filter{
+#filter_table{
 	width:250px;
-	text-align: center;
+
 	display: inline-block;
 	vertical-align: top;
-	border-right: 2px solid rgba(0,0,0,0.2);
+	border: 2px solid rgba(0,0,0,0.2);
+	margin-left: 20px;
+	margin-bottom: 30px;
 }
 
 #select{
 	width: 50%;
-		margin-left: auto;
+	margin-left: auto;
 	margin-right: auto;
 
 
@@ -47,6 +49,85 @@ body{
 	width: 256px;
 	padding:0px 25px;
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: top;	
+}
+
+.filter_container{
+	background-color: white;
+	margin-bottom:20px;
+}
+.filter_head{
+	background-color: #dadada;
+	font-size: 16px;
+	padding: 3px 0px;
+}
+
+.filter_body{
+	padding: 20px 15px;
+	padding-top: 10px;
+}
+
+#slider-values{
+	margin-top: 15px;
+}
+
+#value_left{
+	display: inline-block;
+	float: left;
+}
+
+#value_right{
+	display: inline-block;
+	float: right;
+}
+
+.single_color{
+	display: inline-block;
+	width: 52px;
+	margin-bottom: 5px;
+}
+
+.color_option{
 	
+}
+
+#offers_list{
+
+}
+
+.single_offer{
+	display: inline-block;
+	width: 50px;
+
+}
+
+.cat_checkbox{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.cat_name{
+	display: inline-block;
+}
+
+a:focus{
+	outline:none;
+}
+
+input:focus{
+	outline: none;
+}
+
+.end-points{
+	display: inline-block;
+	background-color: gray;
+	position: fixed;
+}
+
+input[type="checkbox"]:focus{
+	outline:none;
+}
+
+input[type="radio"]:focus{
+	outline:none;
 }

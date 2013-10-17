@@ -11,23 +11,96 @@
 			
 
 			function loadNewData(){
-				$("#main_img").attr('src','../img/large/'+data.data[new_item_id]['pname']);
-				$('#title').html(data.data[new_item_id]['title']);
-				$('#price').html(moneyString(data.data[new_item_id]['price']));	
+				$("#normal").css("opacity","0.5");
+				$('<img src="../img/large/'+data.data[new_item_id]['pname']+'">').load(function(){
+					$("#normal").empty();
+					$(this).appendTo($("#normal"));
+					$('#title').html(data.data[new_item_id]['title']);
+					$('#price').html(moneyString(data.data[new_item_id]['price']));
+					$("#normal").css("opacity","1");
+
+				});
 			}
 
 			$(document).ready(function(){
-				$('body').append('<div class="checkout"><a href="mycart.php"><img id="checkout" src="../img/item/cart.png"/></a></div>');
-				var window_width = $(window).width() -  $(".checkout").width();
-				var window_height = $(window).height() -  $(".checkout").height();
-				$(".checkout").css("top",window_height-145);
-				$(".checkout").css("left",window_width-145);
-				
+
 				new_item_id = <?php echo $_SESSION['item_id']; ?>;
 				data = <?php echo $_SESSION['item_list']; ?>;
 				loadNewData();
+
+				
+			$("#normal").mouseenter(function(){
+				var position = $(this).position();;
+				img_width = $("#normal").width();
+			 	img_height = $("#normal").height();
+			  	img_left = position.left;
+			 	img_top = position.top;	
+
+			 	var tint_str = '<div id=\"tintEffect\" class=\"tint\" style=\"width:'+ img_width+'px; height:'+ img_height+'px ;top:'+ img_top+'px; left:'+ img_left+' \"></div>';
+			 	$(this).append(tint_str);
+			 	$("#tintEffect").animate({opacity:0.2},10,"linear");
+			 	
+			 	$("#container").append('<div id="zoomed" class="zoomed" style="width:'+img_width+'px;height:'+img_height+'px;top:'+img_top+'px;left:'+(img_width+img_left)+'px ;"><img id="large_image" class="large_image" src="../img/large/'+data.data[new_item_id]['pname']+'" style="position:absolute;max-width:none;"/></div>');
+			 	var rt = ($("#large_image").width()/300);	
+				$(this).append('<div id="lens" class="lens" style="width:'+img_width/rt+'px;height:'+img_height/rt+'px">'+'<img id="overlay_image" src="../img/large/'+data.data[new_item_id]['pname']+'" width='+img_width+' height='+img_height+' style="position:absolute;max-width:none;top:'+img_top+'px; left:'+img_left+'px;"/>'+'</div>');	 	
+			 	$("#lens").css({width:img_width/rt, height:img_height/rt});
+			});
+
+			$("#normal").mousemove(function(e){
+			   	lens(img_top,img_left,img_height+img_top,img_left+img_width,e.pageX,e.pageY,($("#large_image").width()/img_width));
+			});
+
+
+			$("#normal").mouseleave(function(){
+				$("#tintEffect").animate({opacity:0.0},100,"linear",function(){
+					$("#tintEffect").remove();
+				});
+
+				$("#lens").remove();
+				$("#zoomed").remove();
+			});
 					
 			});
+
+			function lens(top1,left1,bottom1,right1,mouseX,mouseY,ratio){
+			var widthby2 = $("#lens").outerWidth() /2;
+			var heightby2 = $("#lens").outerHeight()/2;
+			var wid = $("#lens").width();
+			var ht = $("#lens").height();
+
+			// Checking top and left coordinates of 
+		    if((mouseX-widthby2)<=left1){
+		   		$("#lens").clearQueue().animate({"left":left1},300,"easeOutQuint");
+		   		$("#overlay_image").clearQueue().animate({"left":(wid-widthby2*2)/2},300,"easeOutQuint");
+		   		$("#large_image").clearQueue().animate({"left":0},600,"easeOutCirc");
+		    }
+		    else if((mouseX+widthby2)>=right1){
+		    	$("#lens").clearQueue().animate({"left":right1-(widthby2*2)},300,"easeOutQuint");
+		    	$("#overlay_image").clearQueue().animate({"left":wid-img_width-(wid-widthby2*2)/2},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"left":-(img_width- widthby2*2)*ratio},600,"easeOutCirc");
+		    }
+		    else{
+		    	$("#lens").clearQueue().animate({"left":mouseX-widthby2},300,"easeOutQuint");
+		    	$("#overlay_image").clearQueue().animate({"left":left1+(wid/2)-mouseX},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"left":img_width/2-((mouseX-left1)*ratio)},600,"easeOutCirc");
+		    }
+
+		    if((mouseY-heightby2)<=top1){
+		    	$("#lens").clearQueue().animate({"top":top1-0},300,"easeOutQuint");
+		    	$("#overlay_image").clearQueue().animate({"top":(ht- heightby2*2)/2},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"top":0},600,"easeOutCirc");
+		    }
+		    else if((mouseY+heightby2)>=bottom1){
+		    	$("#lens").clearQueue().animate({"top":bottom1-(heightby2*2)-0},300,"easeOutQuint");	
+		    	$("#overlay_image").clearQueue().animate({"top":ht-img_height-(ht- heightby2*2)/2},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"top":-(img_height- heightby2*2)*ratio},600,"easeOutCirc");
+		    }
+		    else{
+		    	$("#lens").clearQueue().animate({"top":mouseY-heightby2-0},300,"easeOutQuint");		
+		    	$("#overlay_image").clearQueue().animate({"top":top1+(ht/2)-mouseY},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"top":img_height/2-((mouseY-top1)*ratio)},600,"easeOutCirc");
+		    }
+		}
 
 		</script>
 	</head>
@@ -67,12 +140,16 @@
 		</div>	
 		<div id="container">
 			<div id="left_arrow">
-				<img src="../img/item/arrowL.png"  class="cursor" onclick="leftClick()">
+				<img id="l_image" src="../img/item/arrowL.png"  class="cursor" onclick="leftClick()">
 			</div>	
 			<div id="products">
 				<div id="title">The beautiful blue dress</div>
-				<div id="photo">
-					<img id="main_img" src="">
+
+				<div id="img" class="img">
+					<div id="normal" class="image-normal">
+						<img id="small_image" src="">
+					</div>
+					
 				</div>	
 			</div>
 			<div id="details">	
@@ -80,7 +157,7 @@
 						Dress to impress or keep things casual with this original faux halter dress that’s made from Rayon.
 				</div>	
 				<div id="right_arrow">
-					<img src="../img/item/arrowR.png"  class="cursor" onclick="rightClick()">
+					<img id="r_image" src="../img/item/arrowR.png"  class="cursor" onclick="rightClick()">
 				</div>
 				<div id="price_div">
 					<div id="status">Available</div>
@@ -103,11 +180,17 @@
 					</select>	
 				</div>	
 				<div id="button_add">
-					<img src="../img/item/add_to_bag.png" class="cursor disabled" onclick="addToCart()">
+					<img src="../img/item/add_to_bag.png" class="cursor" onclick="addToCart()">
 				</div>
 			</div>	
 
 		</div>	
+
+		<div class="checkout">
+			<a href="mycart.php">
+				<img id="checkout" src="../img/item/cart.png"/>
+			</a>
+		</div>
 		<script type="text/javascript">
 			$("#cat").on('change',function(){
 				var cat = $("#cat").val();
@@ -131,6 +214,8 @@
 					loadNewData();
 				}
 			}
+
+			
 
 			function rightClick(){
 				if(new_item_id<data.data.length-1){
@@ -178,6 +263,8 @@
 					});	
 				}
 			}
+
+
 
 		</script>
 	</body>
