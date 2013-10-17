@@ -74,7 +74,12 @@ if(session_id() == '') {
 			$res = $populate -> getCategory($_REQUEST['tag']);
 
 		 ?>
-		<?php include_once("gen_header.php") ?>		
+		<div id="top">
+			<div><a href="home2.php"><img src="../img/logo/logo2.png"></div>
+			<div id="cat_menu">
+				<?php include_once("menu.php"); ?>
+			</div>
+		</div>
 
 		<div id="cat_body">
 			<div id="filter_table">
@@ -158,7 +163,7 @@ if(session_id() == '') {
 					</div>
 				</div>
 
-				<div id="filter_category" class="filter_container">
+				<div id="filter_category" class="filter_container" style="margin-bottom:0px;">
 					<div class="filter_head">
 						Select Category
 					</div>

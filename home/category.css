@@ -7,8 +7,7 @@ body{
 }
 
 #top{
-	padding: 10px 0px 0px 10px;
-	
+	padding: 10px 0px 0px 10px;	
 	display: block;
 }
 
@@ -22,7 +21,6 @@ body{
 
 #filter_table{
 	width:250px;
-
 	display: inline-block;
 	vertical-align: top;
 	border: 2px solid rgba(0,0,0,0.2);
@@ -130,4 +128,20 @@ input[type="checkbox"]:focus{
 
 input[type="radio"]:focus{
 	outline:none;
+}
+
+.menu{
+	margin-top:5px;
+	margin-bottom:5px;
+	border-top: 0px solid white;
+	border-bottom: 0px solid white;
+	display:inline-block;
+	color:#B0AFAB;
+	padding: 0px 30px 0px 0px;
+}
+
+#cat_menu {
+	border-top: 3px solid white;
+	border-bottom: 3px solid white;
+	margin-top: 10px;
 }

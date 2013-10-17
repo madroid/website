@@ -47,29 +47,7 @@ if(session_id() == '') {
 				<div id="logo" class="logo">
 					<img src="../layout/logo.png" alt="BeyondPink Logo"/>
 				</div>
-				<div id="menu" class="menu">
-					<ul>	
-						<li><a href="category.php?tag=Women">Women</a></li>.
-						<li class="dropdown"><a href="category.php?tag=Bottom">Bottom</a>
-							<ul class="sub_menu">
-								<li><a href="category.php?tag=Pant">Pant</a></li>
-								<li><a href="category.php?tag=Shorts">Shorts</a></li>
-								<li><a href="category.php?tag=Skirts">Skirts</a></li>
-							</ul>	
-						</li>.
-						<li><a href="category.php?tag=Jumpsuites">Jumpsuites</a></li>.
-						<li><a href="category.php?tag=Footwear">Footwears</a></li>.
-						<li><a href="category.php?tag=Bellerinas">Bellerinas</a></li>.
-						<li class="dropdown"><a href="category.php?tag=Winter Wear">Winter Wear</a>
-							<ul class="sub_menu">
-								<li><a href="category.php?tag=Cardigan">Cardigan</a></li>
-								<li><a href="category.php?tag=Jacket">Jacket</a></li>
-								<li><a href="category.php?tag=Sweater">Sweater</a></li>
-							</ul>	
-						</li>.
-						<li><a href="#">Special Requests</a></li>.
-					</ul>
-				</div>
+				<?php include_once('menu.php'); ?>
 			</div>
 
 		</div>

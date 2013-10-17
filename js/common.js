@@ -36,3 +36,4 @@ function moneyString(money){
 					return (money.substr(0,2)+","+money.substr(2));
 				}
 }
+

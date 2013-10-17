@@ -6,5 +6,6 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/login.js"></script>
+<script src="../js/menu.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>    
 <script type="text/javascript" src="../js/jqueryui.min.js"></script>	
