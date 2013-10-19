@@ -42,10 +42,18 @@ if(session_id() == '') {
 
 	<body>
 		
+		<div id="profile_header">
+			<div id="profile_header1">
+				<span class="profile_header"><a href="#">Home</a></span>
+				<div class="separator">&nbsp;</div>
+				<span class="profile_header"><a href="#">Profile</a></span>
+			</div>
+		</div>
+				
 		<div id="top" class="top">
 			<div id="top_left" class="top_left boundary">
 				<div id="logo" class="logo">
-					<img src="../layout/logo.png" alt="BeyondPink Logo"/>
+					<img src="../img/logo/logo2.png" alt="BeyondPink Logo"/>
 				</div>
 				<?php include_once('menu.php'); ?>
 			</div>

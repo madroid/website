@@ -74,6 +74,15 @@ if(session_id() == '') {
 			$res = $populate -> getCategory($_REQUEST['tag']);
 
 		 ?>
+
+		 <div id="profile_header">
+			<div id="profile_header1">
+				<span class="profile_header"><a href="#">Home</a></span>
+				<div class="separator">&nbsp;</div>
+				<span class="profile_header"><a href="#">Profile</a></span>
+			</div>
+		</div>
+		
 		<div id="top">
 			<div><a href="home2.php"><img src="../img/logo/logo2.png"></div>
 			<div id="cat_menu">

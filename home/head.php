@@ -3,6 +3,7 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 <link href="../css/common.css" rel="stylesheet">
+<link href="item_common_css.css" rel="stylesheet">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/login.js"></script>

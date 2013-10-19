@@ -1,10 +1,11 @@
-<?php session_start();
- ?>
-<html language="en">
+<?php
+if(session_id() == '') {
+    session_start();
+}
+?><html language="en">
 	<head>
 		<?php include_once("head.php"); ?>		
 		<link href="item_css.css" rel="stylesheet">
-		<link href="item_common_css.css" rel="stylesheet">
 		<script type="text/javascript">
 			var new_item_id;
 			var data;
@@ -116,23 +117,11 @@
 
 		<div id="head2">
 			<div id="id1">
-			<div class="head2" style="margin-right:150px">
-				<img href="#" src="../img/logo/logo.png">
-			</div>	
-
 			<div class="head2">
-				
-				<span id="category">Category: </span>
-				<select id="cat" style="margin-bottom:0px;width:120px">
-					<option>Women</option>
-					<option>Pant</option>
-					<option>Shorts</option>
-					<option>Skirts</option>
-					<option>Cardigan</option>
-					<option>Jumpsuite</option>
-					<option>Sweater</option>
-				</select>	
-			</div>
+				<img href="#" src="../img/logo/logo2.png">
+			</div>	
+			<?php include_once("menu.php"); ?>
+			
 			</div>	
 		</div>
 
@@ -256,7 +245,7 @@
 					$.ajax({
 						type:'POST',
 						url:'session.php',
-						data:'item_id='+data.data[new_item_id]['pid']+"&item_price="+data.data[new_item_id]['price']+"&item_size="+cart_item_size+"&item_qty="+cart_item_qty+"&item_name="+data.data[new_item_id]['pname'],
+						data:'item_id='+data.data[new_item_id]['pid']+"&item_size="+cart_item_size+"&item_qty="+cart_item_qty,
 						success:function(html){
 							alert(html);
 						}
@@ -267,6 +256,7 @@
 
 
 		</script>
+
 	</body>
 
 </html>		

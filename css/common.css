@@ -166,11 +166,12 @@ ul{
 .menu{
 	margin-top:5px;
 	margin-bottom:5px;
-	border-top: 5px solid white;
-	border-bottom: 5px solid white;
+	border-top: 3px solid white;
+	border-bottom: 3px solid white;
 	display:inline-block;
 	color:#B0AFAB;
 	padding: 4px 30px 4px 0px;
+	margin-bottom: 10px;
 }
 
 .menu > ul > li{
@@ -220,16 +221,17 @@ ul.sub_menu li a{
 }
 
 
+
 ul.sub_menu> li > a {
 	display: block;
-	-webkit-transition: padding-left 0.4s ease-out;
-	-moz-transition: padding-left 0.4s ease-out;
-	-o-transition: padding-left 0.4s ease-out;
-	transition: padding-left 0.4s ease-out;
+	-webkit-transition: padding-left 0.3s ease-out;
+	-moz-transition: padding-left 0.3s ease-out;
+	-o-transition: padding-left 0.3s ease-out;
+	transition: padding-left 0.3s ease-out;
 }
 
 ul.sub_menu> li > a:hover {
-	padding-left: 20px;
+	padding-left: 35px;
 	background-color: rgba(0, 0, 0, 0.2);
 }
 
