@@ -19,7 +19,6 @@ if(session_id() == '') {
 					$('#title').html(data.data[new_item_id]['title']);
 					$('#price').html(moneyString(data.data[new_item_id]['price']));
 					$("#normal").css("opacity","1");
-
 				});
 			}
 
@@ -37,18 +36,22 @@ if(session_id() == '') {
 			  	img_left = position.left;
 			 	img_top = position.top;	
 
+
 			 	var tint_str = '<div id=\"tintEffect\" class=\"tint\" style=\"width:'+ img_width+'px; height:'+ img_height+'px ;top:'+ img_top+'px; left:'+ img_left+' \"></div>';
 			 	$(this).append(tint_str);
 			 	$("#tintEffect").animate({opacity:0.2},10,"linear");
 			 	
 			 	$("#container").append('<div id="zoomed" class="zoomed" style="width:'+img_width+'px;height:'+img_height+'px;top:'+img_top+'px;left:'+(img_width+img_left)+'px ;"><img id="large_image" class="large_image" src="../img/large/'+data.data[new_item_id]['pname']+'" style="position:absolute;max-width:none;"/></div>');
 			 	var rt = ($("#large_image").width()/300);	
-				$(this).append('<div id="lens" class="lens" style="width:'+img_width/rt+'px;height:'+img_height/rt+'px">'+'<img id="overlay_image" src="../img/large/'+data.data[new_item_id]['pname']+'" width='+img_width+' height='+img_height+' style="position:absolute;max-width:none;top:'+img_top+'px; left:'+img_left+'px;"/>'+'</div>');	 	
-			 	$("#lens").css({width:img_width/rt, height:img_height/rt});
+				$(this).append('<div id="lens" class="lens">'+'<img id="overlay_image" src="../img/large/'+data.data[new_item_id]['pname']+'" width='+img_width+' height='+img_height+' style="position:absolute;max-width:none;top:'+img_top+'px; left:'+img_left+'px;"/>'+'</div>');	 	
+			 	$("#lens").css({"top":(img_left+(img_width/2)-($("#lens").width()/2)),"left":(img_top+(img_height/2)-($("#lens").height()/2))});
+			 	//$("#lens").css({"top":0,"left":0});
+			 	
 			});
 
+			
 			$("#normal").mousemove(function(e){
-			   	lens(img_top,img_left,img_height+img_top,img_left+img_width,e.pageX,e.pageY,($("#large_image").width()/img_width));
+			  lens(img_top,img_left,img_height+img_top,img_left+img_width,e.pageX,e.pageY,($("#large_image").width()/img_width));
 			});
 
 
@@ -64,42 +67,44 @@ if(session_id() == '') {
 			});
 
 			function lens(top1,left1,bottom1,right1,mouseX,mouseY,ratio){
-			var widthby2 = $("#lens").outerWidth() /2;
-			var heightby2 = $("#lens").outerHeight()/2;
+			
+			var widthby2 = ($("#lens").outerWidth()/2);
+			var heightby2 = $("#lens").outerHeight()/(2);
 			var wid = $("#lens").width();
 			var ht = $("#lens").height();
 
+			//console.log(widthby2+" "+heightby2+" "+wid+" "+ht);
 			// Checking top and left coordinates of 
 		    if((mouseX-widthby2)<=left1){
 		   		$("#lens").clearQueue().animate({"left":left1},300,"easeOutQuint");
-		   		$("#overlay_image").clearQueue().animate({"left":(wid-widthby2*2)/2},300,"easeOutQuint");
-		   		$("#large_image").clearQueue().animate({"left":0},600,"easeOutCirc");
+		   		//$("#overlay_image").clearQueue().animate({"left":(wid-widthby2*2)/2},300,"easeOutQuint");
+		   		//$("#large_image").clearQueue().animate({"left":0},600,"easeOutCirc");
 		    }
 		    else if((mouseX+widthby2)>=right1){
 		    	$("#lens").clearQueue().animate({"left":right1-(widthby2*2)},300,"easeOutQuint");
-		    	$("#overlay_image").clearQueue().animate({"left":wid-img_width-(wid-widthby2*2)/2},300,"easeOutQuint");
-		    	$("#large_image").clearQueue().animate({"left":-(img_width- widthby2*2)*ratio},600,"easeOutCirc");
+		    	//$("#overlay_image").clearQueue().animate({"left":wid-img_width-(wid-widthby2*2)/2},300,"easeOutQuint");
+		    	//$("#large_image").clearQueue().animate({"left":-(img_width- widthby2*2)*ratio},600,"easeOutCirc");
 		    }
 		    else{
 		    	$("#lens").clearQueue().animate({"left":mouseX-widthby2},300,"easeOutQuint");
-		    	$("#overlay_image").clearQueue().animate({"left":left1+(wid/2)-mouseX},300,"easeOutQuint");
-		    	$("#large_image").clearQueue().animate({"left":img_width/2-((mouseX-left1)*ratio)},600,"easeOutCirc");
+		    	//$("#overlay_image").clearQueue().animate({"left":left1+(wid/2)-mouseX},300,"easeOutQuint");
+		    	//$("#large_image").clearQueue().animate({"left":img_width/2-((mouseX-left1)*ratio)},600,"easeOutCirc");
 		    }
 
 		    if((mouseY-heightby2)<=top1){
-		    	$("#lens").clearQueue().animate({"top":top1-0},300,"easeOutQuint");
-		    	$("#overlay_image").clearQueue().animate({"top":(ht- heightby2*2)/2},300,"easeOutQuint");
-		    	$("#large_image").clearQueue().animate({"top":0},600,"easeOutCirc");
+		    	$("#lens").clearQueue().animate({"top":top1},300,"easeOutQuint");
+		    	//$("#overlay_image").clearQueue().animate({"top":(ht- heightby2*2)/2},300,"easeOutQuint");
+		    	//$("#large_image").clearQueue().animate({"top":0},600,"easeOutCirc");
 		    }
 		    else if((mouseY+heightby2)>=bottom1){
-		    	$("#lens").clearQueue().animate({"top":bottom1-(heightby2*2)-0},300,"easeOutQuint");	
-		    	$("#overlay_image").clearQueue().animate({"top":ht-img_height-(ht- heightby2*2)/2},300,"easeOutQuint");
-		    	$("#large_image").clearQueue().animate({"top":-(img_height- heightby2*2)*ratio},600,"easeOutCirc");
+		    	$("#lens").clearQueue().animate({"top":bottom1-(heightby2*2)},300,"easeOutQuint");	
+		    	//$("#overlay_image").clearQueue().animate({"top":ht-img_height-(ht- heightby2*2)/2},300,"easeOutQuint");
+		    	//$("#large_image").clearQueue().animate({"top":-(img_height- heightby2*2)*ratio},600,"easeOutCirc");
 		    }
 		    else{
-		    	$("#lens").clearQueue().animate({"top":mouseY-heightby2-0},300,"easeOutQuint");		
-		    	$("#overlay_image").clearQueue().animate({"top":top1+(ht/2)-mouseY},300,"easeOutQuint");
-		    	$("#large_image").clearQueue().animate({"top":img_height/2-((mouseY-top1)*ratio)},600,"easeOutCirc");
+		    	$("#lens").clearQueue().animate({"top":mouseY-heightby2-$("#container").offset().top},300,"easeOutQuint");		
+		    	//$("#overlay_image").clearQueue().animate({"top":top1+(ht/2)-mouseY},300,"easeOutQuint");
+		    	//$("#large_image").clearQueue().animate({"top":img_height/2-((mouseY-top1)*ratio)},600,"easeOutCirc");
 		    }
 		}
 
@@ -107,30 +112,24 @@ if(session_id() == '') {
 	</head>
 
 	<body>
-		<div id="profile_header">
-			<div id="profile_header1">
-				<span class="profile_header"><a href="#">Home</a></span>
-				<div class="separator">&nbsp;</div>
-				<span class="profile_header"><a href="#">Profile</a></span>
-			</div>
-		</div>
-
+		
+		<?php if(isset($_SESSION['email'])) {include_once('login_header.php');} ?>		
+		
 		<div id="head2">
 			<div id="id1">
 			<div class="head2">
 				<img href="#" src="../img/logo/logo2.png">
 			</div>	
 			<?php include_once("menu.php"); ?>
-			
 			</div>	
 		</div>
 
-		<div id="lines">	
-		</div>	
+		<div id="lines">
+		</div>
 		<div id="container">
 			<div id="left_arrow">
 				<img id="l_image" src="../img/item/arrowL.png"  class="cursor" onclick="leftClick()">
-			</div>	
+			</div>
 			<div id="products">
 				<div id="title">The beautiful blue dress</div>
 
@@ -153,14 +152,14 @@ if(session_id() == '') {
 					<div>Rs.<span id="price"></span></div>
 				</div>
 				<div id="options">
-					<select id="select_size" style="margin-bottom:0px;width:120px">
+					<select class="tip1" data-toggle="tooltip" title="Select the size" id="select_size" style="margin-bottom:0px;width:120px">
 						<option selected="true" style="display:none;">Select size</option>
 						<option>S</option>
 						<option>M</option>
 						<option>L</option>
 						<option>X</option>
 					</select>	
-					<select id="select_qty" style="margin-bottom:0px;width:120px">
+					<select class="tip2" data-toggle="tooltip" title="Select the quantity" id="select_qty" style="margin-bottom:0px;width:120px">
 						<option selected="true" style="display:none;">Select quantity</option>
 						<option>1</option>
 						<option>2</option>

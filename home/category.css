@@ -20,7 +20,7 @@ body{
 }
 
 #filter_table{
-	width:250px;
+	width:210px;
 	display: inline-block;
 	vertical-align: top;
 	border: 2px solid rgba(0,0,0,0.2);
@@ -38,8 +38,8 @@ body{
 
 #container{
 	display: inline-block;
-	padding-left: 20px;
-	
+	padding-left: 80px;
+	border: 0px solid black;
 	
 }
 
@@ -56,13 +56,15 @@ body{
 }
 .filter_head{
 	background-color: #dadada;
-	font-size: 16px;
-	padding: 3px 0px;
+	font-size: 14px;
+	padding: 3px 11px;
+	color:#848484;
 }
 
 .filter_body{
 	padding: 20px 15px;
 	padding-top: 10px;
+	color: #6E6E6E;
 }
 
 #slider-values{
@@ -81,7 +83,7 @@ body{
 
 .single_color{
 	display: inline-block;
-	width: 52px;
+	width: 42px;
 	margin-bottom: 5px;
 }
 
@@ -95,7 +97,7 @@ body{
 
 .single_offer{
 	display: inline-block;
-	width: 50px;
+	width: 42px;
 
 }
 

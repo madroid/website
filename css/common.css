@@ -85,7 +85,7 @@ ul{
 }
 
 .description{
-	height: 60px;
+	font-size: 12px;
 	padding:3px;
 	border:0px solid black;
 	position:relative;
@@ -103,6 +103,7 @@ ul{
 
 .available_colors{
 	margin-bottom: 4px;
+
 }
 
 .color_like{
@@ -111,24 +112,28 @@ ul{
 	margin-bottom: 10px;
 	position: relative;
 	font-size: 12px;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #E6E6E6;
 }
 
 .colors{
-	top:8px;
-	left: 3px;
-	position: absolute;
+	bottom:0px;
+ 	position: absolute;
 }
 
 .like{
-	right: 8px;
+	right: 0px;
 	top: 8px;
 	position: absolute;
-	padding-right: 10px;
+	padding-right: 2px;
 }
 
 .price{
-	font-size: 16px;
+	font-size: 13px;
+	font-family: 'our_font'
+}
+
+.title{
+	font-size: 13px;
 }
 
 /* Friday misssed*/
@@ -137,26 +142,6 @@ ul{
 	vertical-align: top;
 }
 
-#col_left{
-	width: 50%;
-	padding-left: 2.5%;
-	padding-right: 2.5%
-	
-}
-
-#col_middle{
-	width: 25%;
-	padding-left: 2.5%;
-	padding-right: 2.5%
-	
-	
-}
-
-#col_right{
-	width: 25%;
-	padding-left: 2.5%;
-	padding-right: 2.5%
-}
 
 #non_video{
 	width: 45%;
@@ -177,24 +162,26 @@ ul{
 .menu > ul > li{
 	display: inline-block;
 	padding-right: 0px;
-	margin-left: 15px;
+	margin-left: 23px;
 	position: relative;
 }
 
 .menu > ul > li:hover{
-	background-color: #dadada;
+	
 }
 
 
 .menu  ul  li  a{
 	text-decoration: none;
 	color:#B0AFAB;
+	font-size: 13px;
 }
 
 .sub_menu{
 	z-index: 200px;
 	position: relative;
-	border: 2px solid red;
+	border: 0px solid red;
+	padding-top: 6px;
 }
 
 ul.sub_menu li a{
@@ -243,3 +230,132 @@ ul.sub_menu> li > a:hover {
 .cursor{
 	cursor: pointer;
 }
+
+/*----------------------------- container for profile and home page-------------------------------------*/
+
+#container1{
+	padding-top: 80px;
+	padding-bottom: 20px;
+	width: 1200px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0px solid black;
+}
+
+
+.column{
+	width: 256px;
+	padding:0px 35px;
+	display: inline-block;
+	vertical-align: top;	
+	border: 0px solid black;
+}
+
+#col_left_big{
+	border: 0px solid red;
+	display: inline-block;
+	width: 500px;
+}
+
+#col_left{
+	float: right;
+}
+/*----------------------------- container for profile and home page-------------------------------------*/
+
+
+/*------------------------------Item_common_css.css-----------------------------------------------------*/
+
+#profile_header{
+	border-top: 2px solid gray;
+	color:white;
+	font-size: 14px;
+	height: 30px;
+	padding:0px 5px;
+	background-color: white;
+}
+
+#profile_header1{
+	float: right;
+	display: block;
+}
+
+.profile_header {
+	display:inline-block;
+	border: 0px solid white;
+	padding-left:12px;
+	padding-right: 12px;
+	padding-top: 4px;
+
+}
+
+.profile_header > a{
+	color: gray;
+	
+	text-decoration: none;
+}
+
+.separator{
+	width: 2px;
+	height: 30px;	
+	top:-2px;
+	background-color: gray;
+	display: inline-block;
+	position: absolute;
+}
+
+#head2{
+	border: 0px solid black;
+	padding-left: 150px;
+	position: relative;
+	background-color: #EDE9E6;
+
+}
+
+.head2{
+	display: block;
+	padding-right: 20px;
+	margin-bottom: 5px;
+}
+
+#category{
+	font-size: 14px;
+}
+
+#lines{
+	height: 10px;
+	border: 1px solid black;
+	border-left: 0px;
+	border-right: 0px;
+	margin-top: 10px;
+	border-color: rgba(0,0,0,0.2);
+}
+
+select{
+	background-color: #EDE9E6;
+	background-image: url('../img/item/down_arrow.png');
+	background-position: right;
+	background-repeat: no-repeat;
+	border-radius: 0px;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 4px;
+    vertical-align: middle;
+    padding: 0 4px;
+    margin: 0px;
+
+}
+
+select:focus{
+	outline: none;
+}
+/*------------------------------Item_common_css.css-----------------------------------------------------*/
+
+
+@font-face{
+	font-family:our_font;
+	src:url("../font/Swiss_721_Light_Condensed.ttf");
+}
+
+* { font-family: "our_font" !important; }

@@ -1,17 +1,10 @@
 window.onload = initLoginInterfacePage ;
 
 var isRegistered = true ;
-var success_img = "../img/form/success.png";
-var error_img = "../img/form/error.png";
 var email = "0";
 function initLoginInterfacePage(){
   document.getElementById("inputEmail").onblur = checkEmail;
-  // document.getElementById("inputPassword").onblur = checkPassword;
   document.getElementById("button_sign_up").disabled = true ;
-  document.getElementById("button_sign_in").onClick = userLogin ;
-  document.getElementById("button_sign_up").onClick = userRegister;
-  // $('#statusEmail').hide();
-  // $('#statusPassword').hide();
 }
 
 
@@ -68,83 +61,74 @@ function removeEdittext(divID){
   var confirmPass = document.getElementById("confirm") ;
   document.getElementById(divID).removeChild(confirmPass);
 }
+	function userlogin1(){
 
-function userLogin(){
-  isRegistered = true ;
- var inputUsername = escape(document.getElementById("inputEmail").value);
- var inputPasswd = escape(document.getElementById("inputPassword").value);
- if(inputPasswd.length>0 && inputUsername.length>0){
-  request = new createRequest();
-  if(request!=null){
-   var url = "../backend/login.php?email="+inputUsername+"&passwd="+inputPasswd;
-   
-   request.open("POST",url,true);
-   request.onreadystatechange = myAccount ;
-   request.send(null);
- }
-}
-else{
-  alert("Please fill up the required fields!");
-}
-
-}
-
-function userRegister(){
-  isRegistered = false ;
- var inputUsername = escape(document.getElementById("inputEmail").value);
- var inputPasswd = escape(document.getElementById("inputPassword").value);
- var confirmPass = escape(document.getElementById("inputConfirm").value);
- if(inputPasswd.length>0 && inputUsername.length>0 && confirmPass.length>0){
-  if(inputPasswd==confirmPass){
-	
-    var url = "../backend/register.php?email="+inputUsername+"&passwd="+inputPasswd;
-  request.open("POST",url,true);
-  request.onreadystatechange = myAccount ;
-  request.send(null);
-  
-}
-else{
-  alert("Password don't match!");
-}
-
-}
-else{
-  alert("Please fill up the required fields!");
-}
-
-}
-
-function myAccount(){
-	
-  if(request.readyState==4 && request.status==200){
-    var jObj = JSON.parse(request.responseText);
-    if(jObj.success=="1"){
+		if(isLoggedin=="0"){
+			$('#login_box').modal('show');
+		}
+		else{
+			window.location.href = "profile.php" ;
+		}
 		
-      // if(jObj.name!=null){
-       // document.getElementById("username").innerHTML=jObj.name;
-      // }
-      // else{
-       // document.getElementById("username").innerHTML="Anon"; 
-      // }
-		set_email(jObj.email);
-      $('#inputEmail').val("");
-      $('#inputPassword').val("");
-      if(!isRegistered){
-        $('#inputConfirm').val("");
-      }
-      $('#signin').hide();
-      $('#login_box').modal('hide');
-	  alert("done");
-    }
-  }
-}
 
-function validateEmail(email) 
-{
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-}
+	}
 
-function demo(){
-  alert("Running...");
-}
+	function set_email(email){
+
+	}
+
+
+	function signin(){
+		var inputUsername = $.trim($("#inputEmail").val());
+		var inputPasswd = $.trim($("#inputPassword").val());
+		
+		$.ajax({
+			type:"POST",
+			url:"../backend/login.php",
+			async:false,
+			data:"email="+inputUsername+"&passwd="+inputPasswd,
+			success:function(json){
+				$('#login_box').modal('hide');
+				var jobj = JSON.parse(json);
+				$('body').prepend('<div id="profile_header"><div id="profile_header1"><span class="profile_header"><a href="home2.php">Home</a></span><div class="separator">&nbsp;</div><span class="profile_header"><a href="profile.php">Profile</a></span></div></div>');
+				$("#profile_header1").hide();
+				$("#profile_header1").slideDown();
+				isLoggedin = "1";
+			}
+		});
+	}
+
+	function signup(){
+		var inputUsername = $.trim($("#inputEmail").val());
+		var inputPasswd = $.trim($("#inputPassword").val());
+		var confirmPass = $.trim($("#inputConfirm").val());
+		if(inputPasswd.length>0 && inputUsername.length>0 && confirmPass.length>0){
+  	if(inputPasswd==confirmPass){
+		
+	 	$.ajax({
+			type:"POST",
+			url : "../backend/register.php",
+			async:false,
+			data: "email="+inputUsername+"&passwd="+inputPasswd,
+			success:function(json){
+				$('#login_box').modal('hide');
+				var jobj = JSON.parse(json);
+				$('body').prepend('<div id="profile_header"><div id="profile_header1"><span class="profile_header"><a href="home2.php">Home</a></span><div class="separator">&nbsp;</div><span class="profile_header"><a href="profile.php">Profile</a></span></div></div>');
+				$("#profile_header1").hide();
+				$("#profile_header1").slideDown();
+				isLoggedin = "1";
+			}
+		});   
+  
+	}
+	else{
+  		  alert("Password don't match!");
+	}
+
+	}
+	else{
+	  alert("Please fill up the required fields!");
+	}
+
+
+	}

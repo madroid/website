@@ -61,36 +61,21 @@ class Populate{
 		require_once('connect.php');
 		$db = new DB_CONNECT();
 
-		$query = "SELECT * FROM vars WHERE var_name='home'";
-		$result = mysql_query($query) or die(mysql_error());
+		$query = "SELECT * FROM product";
+		$result = mysql_query($query) ;//or die(mysql_error());
 		$response = array();
 		$response['data'] = array();
-		$data = mysql_fetch_assoc($result);
-		$strlength = strlen($data['var_value']);
-		$data = explode("#", $data['var_value']);
-		
-		$size = sizeof($data);
-		if($strlength>2){
-			$query = "SELECT * FROM product WHERE pid IN ";
-			$str = "(";
-			for($i=0;$i<$size-2;$i++){
-				$str.=("'".$data[$i]."',");
+		if(!empty($result)){
+			while($row = mysql_fetch_assoc($result)){
+				array_push($response['data'],$row);
 			}
-			$str.=("'".$data[$size-2]."')");
-			$query.= $str;
+			$response['success'] = 1;
+			$response['message'] = "Got result successfully!";
 			
-			$result = mysql_query($query);
-			if(!empty($result)){
-				while($row = mysql_fetch_assoc($result)){
-					array_push($response['data'],$row);
-				}
-				$response['success'] = 1;
-				$response['message'] = "Got result successfully!";
-			}
-			else{
-				$response['success'] = 5;
-				$response['message'] = "Got empty results while fetching the result";
-			}
+		}
+		else{
+			$response['success'] = 5;
+			$response['message'] = "Got empty results while fetching the result";
 		}
 		
 		return json_encode($response);

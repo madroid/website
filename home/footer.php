@@ -21,41 +21,5 @@
 			echo "0";
 		}	
 	?> ;
-	function userlogin1(){
 
-		if(isLoggedin=="0"){
-			$('#login_box').modal('show');
-		}
-		else{
-			window.location.href = "profile.php" ;
-		}
-		
-
-	}
-
-	function set_email(email){
-
-	}
-
-
-	function signin(){
-		var inputUsername = $.trim($("#inputEmail").val());
-		var inputPasswd = $.trim($("#inputPassword").val());
-		
-		$.ajax({
-			type:"POST",
-			url:"../backend/login.php",
-			data:"email="+inputUsername+"&passwd="+inputPasswd,
-			success:function(json){
-				$('#login_box').modal('hide');
-				var jobj = JSON.parse(json);
-				alert("Login successful");
-				isLoggedin = "1";
-			}
-		});
-	}
-
-	
-	
-	
 </script>

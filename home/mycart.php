@@ -11,24 +11,44 @@ if(session_id() == '') {
 			$(document).ready(function(){
 				
 				var mycart = <?php (include_once('../backend/get_cart_elements.php')); ?>;
-
+				
 				for(var i=0;i<mycart.length;i++){
-					$('#container').append('<div class="cart_item"><div id="'+mycart[i]['pid']+'" class="cart_image"><img src ="../img/large/'+mycart[i]['pname']+'"></div><div class="cart_price">Rs. <span>'+moneyString(mycart[i]['price'])+'</span></div><div class="cart_specs">size <span class="size">'+mycart[i]['size']+'</span> | quantity <span class="quantity">'+mycart[i]['qty']+'</span></div><div class="cart_edit">EDIT</div></div>');
+					addItem(mycart[i]['pid'],mycart[i]['price'],mycart[i]['pname'],mycart[i]['size'],mycart[i]['qty']);
 				}
 			});
+
+			function addItem(pid,pprice,pname,psize,pqty){
+					var str = '<div class="cart_item"><div id="'+pid+'" class="cart_image"></div><div class="cart_price">Rs. <span>'+moneyString(pprice)+'</span></div><div class="cart_specs">size <span class="size">'+psize+'</span> | quantity <span class="quantity">'+pqty+'</span></div><div class="cart_edit">EDIT</div></div>';
+
+					$('<img src ="../img/large/'+pname+'">').load(function(){
+						var left_ht = $("#cat_left").height();
+						var mid_ht = $("#cat_middle").height();
+						var right_ht = $("#cat_right").height();
+						if(left_ht<=mid_ht && left_ht<=right_ht){
+							$(str).appendTo("#cat_left");
+							$(this).appendTo("#"+pid).hide().fadeIn(560);
+						}
+						else if(mid_ht<=left_ht && mid_ht<=right_ht){
+							$(str).appendTo("#cat_middle");
+							$(this).appendTo("#"+pid).hide().fadeIn(560);
+						}
+						else{
+							$(str).appendTo("#cat_right");
+							$(this).appendTo("#"+pid).hide().fadeIn(560);
+						}
+						
+					});
+					
+				}
+
 
 		</script>
 	</head>	
 
 	<body>
-		<div id="profile_header">
-			<div id="profile_header1">
-				<span class="profile_header"><a href="#">Home</a></span>
-				<div class="separator">&nbsp;</div>
-				<span class="profile_header"><a href="#">Profile</a></span>
-			</div>
-		</div>
-
+		
+		<?php if(isset($_SESSION['email'])) {include_once('login_header.php');} ?>		
+		
 		<div id="head2">
 			<div id="id1">
 			<div class="head2">
@@ -44,16 +64,53 @@ if(session_id() == '') {
 
 		<div id="container">
 				
+				<div id="cat_left" class="column">
+				</div>
+				<div id="cat_middle" class="column">
+				</div>
+				<div id="cat_right" class="column">
+				</div>				
+				<div class="checkout_table">
+				<table>
+					<tr>
+						<td>Sub Total</td>
+						<td>Rs. <span id="subtotal">9999</span></td>
+					</tr>
+					<tr>
+						<td>Shipping</td>
+						<td>*TBD</td>
+					</tr>
+					<tr rowspan="2">
+						<td>Total</td>
+						<td>Rs. <span id="total_money">9999</span></td>
+					</tr>
+				</table>
+					
+					<div  id="proceed_button"><a href="order.php"><div>
+						PROCEED TO CHECKOUT</div></a>
+					</a></div>
 
-
+					
+					
+					<div id="continue_button">
+						<div><a href="#">continue shopping</div>
+					</div>
+					
+				</div>
 
 
 		</div>	
 
+		<!-------------------------------------------------------------------------------->
+			<?php include_once("login_modal.php"); ?>
+			<?php   include_once("footer.php");	   ?>
+		<!-------------------------------------------------------------------------------->
+
+
 		<script type="text/javascript">
 			$(function(){
 				$(".cart_edit").on('click',function(e){
-									
+					alert(1);
 					var elem = $(this).parent().children('.cart_image');
 					var arr_elem = elem.children(".layer");
 					if(arr_elem.length==0){
@@ -111,5 +168,7 @@ if(session_id() == '') {
 			}
 
 		</script>
+
+
 	</body>	
 </html>	

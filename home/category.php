@@ -11,21 +11,7 @@ if(session_id() == '') {
 		<link href="category.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/jquery-ui.css" />
 		
-		<script src="../js/jquery.lazyload.min.js" type="text/javascript"></script>
-		
 		<script type="text/javascript">	
-
-		function addItem(pid,ptitle,pprice,pcolor,pfabrics,pname){
-					var str = '<div id="item_'+pid+'" class="item"><div><a href="item.php" onclick="set_session_elements('+pid+')"><img id="img_'+pid+'" src="../img/large/'+pname+'" class="img"></a></div><div class="title"><img id="fav_'+pid+'" src="../layout/heart.png" class="heart" onclick="addToFav('+pid+')"/></div><hr><div class="description"><div class="colors">';
-
-					var arr = pcolor.split(",");
-					for(var j1=0;j1<arr.length-1;j1++){
-						str += '<div class="circle" style="background-color:'+arr[j1]+'"></div>&nbsp;';
-					}
-					str +=	'</div></div></div>';
-
-					return str;
-				}
 
 
 
@@ -67,21 +53,15 @@ if(session_id() == '') {
 
 	</head>
 
-	<body>
-		<?php 
+	<body>	
+	<?php 
+			if(isset($_SESSION['email'])) {include_once('login_header.php');}
 			include_once("../backend/populate.php");
 			$populate = new Populate();
 			$res = $populate -> getCategory($_REQUEST['tag']);
 
 		 ?>
 
-		 <div id="profile_header">
-			<div id="profile_header1">
-				<span class="profile_header"><a href="#">Home</a></span>
-				<div class="separator">&nbsp;</div>
-				<span class="profile_header"><a href="#">Profile</a></span>
-			</div>
-		</div>
 		
 		<div id="top">
 			<div><a href="home2.php"><img src="../img/logo/logo2.png"></div>
@@ -209,43 +189,61 @@ if(session_id() == '') {
 				<div id="cat_right" class="column">
 				</div>
 				<br>
-				<div id="loadmore" style="display:block"><center><button id="loadmoreitems" class="btn btn-large" onclick="more()">...More...</button></center></div>
+				<div id="loadmore" style="display:block"><center><button id="loadmoreitems" class="btn btn-normal" style="font-family:'our_font';color:#6E6E6E;font-size:14.5px;" onclick="more()">...More...</button></center></div>
 				<br>
 			</div>	
 
 			<script type="text/javascript">
-				var nomore = false;
 				
-				function loadItems(nextX,total){
-					for(i;i<total && i<nextX;i++){
+
+
+			function addItem(pid,pcolor,pname,plikes,pdescription){
+					var str = '<div id="img1" class="item"><div><a href="item.php" onclick="set_session_elements('+pid+')"><div id="to_append_'+pid+'"></div></a></div><div class="color_like"><div class="colors"><div class="available_colors">';
+
+					var arr = pcolor.split(",");
+					for(var j1=0;j1<arr.length-1;j1++){
+						str += '<div class="circle" style="background-color:'+arr[j1]+'"></div>&nbsp;';
+					}
+					str +=	'</div></div>';
+					str+= '<div class="like"><div class="heart"><img src="../layout/heart.png"/></div><div>'+plikes+' People like this</div></div></div><div class="description">'+pdescription+'</div>	</div>';
+
+					$('<img id="img_'+pid+'" src="../img/large/'+pname+'" class="img">').load(function(){
 						var left_ht = $("#cat_left").height();
 						var mid_ht = $("#cat_middle").height();
 						var right_ht = $("#cat_right").height();
 						if(left_ht<=mid_ht && left_ht<=right_ht){
-							
-							$(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname'])).appendTo("#cat_left").hide().fadeIn(560);
-
+							$(str).appendTo("#cat_left");
+							$(this).appendTo("#to_append_"+pid).hide().fadeIn(560);
 						}
 						else if(mid_ht<=left_ht && mid_ht<=right_ht){
-							$(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname'])).appendTo("#cat_middle").hide().fadeIn(560);
+							$(str).appendTo("#cat_middle");
+							$(this).appendTo("#to_append_"+pid).hide().fadeIn(560);
 						}
 						else{
-							$(addItem(data.data[i]['pid'],data.data[i]['title'],data.data[i]['price'],data.data[i]['color'],data.data[i]['fabrics'],data.data[i]['pname'])).appendTo("#cat_right").hide().fadeIn(560);						}
+							$(str).appendTo("#cat_right");
+							$(this).appendTo("#to_append_"+pid).hide().fadeIn(560);
+						}
 						
-					}
+					});
+					
+				}
+
+				function loadItems(nextX,total){
+					for(i;i<total && i<nextX;i++){
+						addItem(data.data[i]['pid'],data.data[i]['color'],data.data[i]['pname'],data.data[i]['likes'],data.data[i]['description']);
 
 					if(i>=n){
 						$("#loadmoreitems").addClass("disabled");
 					}
 
-
+					}
 				}
 
 				var data1 = <?php echo json_encode($res); ?>;
 				var data = JSON.parse(data1);
 				var n = 0;
 				if(data.success==1){
-					 n =data.data.length;
+					 n = data.data.length;
 					var i =0;
 					loadItems(i+9,n);
 					

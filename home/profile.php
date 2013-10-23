@@ -1,3 +1,9 @@
+<?php
+if(session_id() == '') {
+    session_start();
+}
+
+?>
 <html language="en">
 	<head>
 		<?php include_once("head.php"); ?>
@@ -18,7 +24,7 @@
 		<div id="profile_header">
 			<div id="profile_header1">
 				<span class="profile_header"><a href="#"><span style="font-size:20px;color:white">]</span> PROFILE <span style="font-size:20px">[</span></a></span>
-				<span class="profile_header"><a href="#">HOME</a></span>
+				<span class="profile_header"><a href="home2.php">HOME</a></span>
 			</div>	
 		</div>	
 
@@ -43,8 +49,9 @@
 							</span>	
 
 							<span id="user_name_gender">
-								<div id="user_name">NAME</div>	
-								<div id="user_gender">GENDER</div>
+								<div id="user_name">Sarah Jones</div>	
+								<div id="user_gender">Female</div>
+								<div id="user_email" style="float:right;margin-top:16px;color:#58D3F7">sarahjones@gmail.com</div>
 							</span>		
 
 					</div>						
