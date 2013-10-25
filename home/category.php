@@ -13,8 +13,6 @@ if(session_id() == '') {
 		
 		<script type="text/javascript">	
 
-
-
 			$(document).ready(function(){
 				$("#all_category").attr("checked",true);
 			$(".dropdown").mouseenter(function(){
@@ -30,6 +28,9 @@ if(session_id() == '') {
 			});
 
 		});
+
+
+
 					$(function() {
 					    $( "#slider-range" ).slider({
 					      range: true,
@@ -194,11 +195,11 @@ if(session_id() == '') {
 			</div>	
 
 			<script type="text/javascript">
-				
+			var category_name = GetUrlValue('tag');
 
 
 			function addItem(pid,pcolor,pname,plikes,pdescription){
-					var str = '<div id="img1" class="item"><div><a href="item.php" onclick="set_session_elements('+pid+')"><div id="to_append_'+pid+'"></div></a></div><div class="color_like"><div class="colors"><div class="available_colors">';
+					var str = '<div id="img1" class="item"><div><a href="item.php?tag='+category_name+'#'+pid+'"><div id="to_append_'+pid+'"></div></a></div><div class="color_like"><div class="colors"><div class="available_colors">';
 
 					var arr = pcolor.split(",");
 					for(var j1=0;j1<arr.length-1;j1++){

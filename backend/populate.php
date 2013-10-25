@@ -1,4 +1,5 @@
 <?php
+mb_internal_encoding("utf-8");
 if(session_id() == '') {
     session_start();
 }
@@ -29,8 +30,7 @@ class Populate{
 			$response['success'] = 5;
 			$response['message'] = "Got empty results while fetching the result";
 		}
-		
-		return json_encode($response);
+		return utf8_encode(json_encode($response)) ;
 	}
 
 	function getItem($pid){
@@ -80,18 +80,25 @@ class Populate{
 		
 		return json_encode($response);
 	}
+
+
 	
 }
 
 
 //$populate = new Populate();
-//$res = $populate-> getCategory("Skirt");
+//$res = $populate-> getCategory("Women");
 //echo "$res";
-if(isset($_POST['category'])){
-	$populate = new Populate();
-	$res = $populate-> getCategory($_POST['category']);
-	echo $res;
-}
+// if(isset($_POST['category'])){
+// 	$populate = new Populate();
+// 	$res = $populate-> getCategory($_POST['category']);
+// 	echo $res;
+// }
 
+// if(isset($_POST['product_id'])){
+// 	$populate = new Populate();
+// 	$res = $populate-> getItem($_POST['product_id']);
+// 	echo $res;
+// }
 
 ?>

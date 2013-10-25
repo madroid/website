@@ -95,8 +95,9 @@ if(session_id() == '') {
 
 	<script type="text/javascript">
 		$("#gif_loader").hide();
-		function addItem(pid,pcolor,pname,plikes,pdescription){
-					var str = '<div id="img1" class="item"><div><a href="item.php" onclick="set_session_elements('+pid+')"><div id="to_append_'+pid+'"></div></a></div><div class="color_like"><div class="colors"><div class="available_colors">';
+		function addItem(pid,pcolor,pname,plikes,pdescription,pcat){
+
+					var str = '<div id="img1" class="item"><div><a href="item.php?tag='+pcat+'#'+pid+'" ><div id="to_append_'+pid+'"></div></a></div><div class="color_like"><div class="colors"><div class="available_colors">';
 
 					var arr = pcolor.split(",");
 					for(var j1=0;j1<arr.length-1;j1++){
@@ -130,7 +131,7 @@ if(session_id() == '') {
 					$("#button_load").hide();
 					$("#gif_loader").show();
 					for(i;i<total && i<nextX;i++){
-						addItem(data.data[i]['pid'],data.data[i]['color'],data.data[i]['pname'],data.data[i]['likes'],data.data[i]['description']);
+						addItem(data.data[i]['pid'],data.data[i]['color'],data.data[i]['pname'],data.data[i]['likes'],data.data[i]['description'],data.data[i]['tags'].split(",")[0]);
 
 					if(i>=n){
 						$("#loadmoreitems").addClass("disabled");

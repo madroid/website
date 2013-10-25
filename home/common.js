@@ -47,3 +47,9 @@ function GetUrlValue(VarSearch){
         }
     }
 }
+
+function addParameterToURL(param){
+    _url = location.href;
+    _url += (_url.split('?')[1] ? '&':'?') + param;
+    return _url;
+}

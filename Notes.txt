@@ -1,1 +1,0 @@
-1. Change the color and background color of the menu links: Modify graphics of the menu.

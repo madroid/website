@@ -1,5 +1,5 @@
 <?php
-if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['color']) && isset($_POST['tags']) && isset($_POST['price'])  && isset($_POST['fabrics']) )
+if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['color']) && isset($_POST['tags']) && isset($_POST['price'])  && isset($_POST['fabrics']) && isset($_POST['description']) )
 {
 	require_once('connect.php');
 	$db = new DB_CONNECT();
@@ -11,9 +11,10 @@ if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['color']) &&
 	$query = "UPDATE vars SET var_value = '$value' WHERE var_name = 'product'";
 	$result = mysql_query($query) or die(mysql_error());
 
-	$fname = "BeyondPink_".$value.'_'.$_FILES["file"]["name"];
+	$fname = "BP_".$value.'_'.$_FILES["file"]["name"];
 	$title = $_POST['title'];
 	$color = $_POST['color'];
+	$description = $_POST['description'];
 	if(substr(trim($color," "),-1)!=","){
 		$color.=",";
 	}
@@ -24,8 +25,8 @@ if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['color']) &&
 	{
 	   move_uploaded_file($_FILES["file"]["tmp_name"], "../img/large/".$fname);
 
-	   $query = "INSERT INTO product(pid,title,price,color,tags,fabrics,pname)".
-			 "VALUES			 ('$value','$title', '$price', '$color', '$tags','$fabrics','$fname')";
+	   $query = "INSERT INTO product(pid,title,price,color,tags,fabrics,pname,description)".
+			 "VALUES			 ('$value','$title', '$price', '$color', '$tags','$fabrics','$fname','$description')";
 
 		$query_exe = mysql_query($query) or die(mysql_error());
 

@@ -16,6 +16,7 @@ if(session_id() == '') {
 			  $(this).addClass("active");
 			});
 		});
+		
 		</script>
 	</head>
 
@@ -35,12 +36,14 @@ if(session_id() == '') {
 					<li class="active"><a href="#">Favourites</a></li>
 				</ul>	
 		</div>	
-		<?php include_once("new_item.php");?>
-		<div id="profile_body">
-		<table width="100%" border="0">
-			<tr class="td">
-				<td id="col_left">
-					<div id="user_info">
+			
+	
+<div id="container1">
+				<div id="filter_div">
+					<!-- Code for filter element. -->
+				</div>
+				<div id="col_left_big">
+						<div id="user_info">
 
 							<span id="user_pic">
 								<div class="user_pic"><img src="../layout/left.png"></div>
@@ -56,24 +59,71 @@ if(session_id() == '') {
 
 					</div>						
 
-					<div id="non_video">
-						<?php add("image3.jpg") ?>
-					</div>	
+					<div id="col_left" class="column">
 
-				</td>
-				<td id="col_middle">
-					<?php add("image1.jpg") ?>
-					<?php add("image4.jpg") ?>
-				</td>
-				<td id="col_right">
-					<?php add("image2.jpg") ?>
-					<?php add("image5.jpg") ?>
-				</td>
-			</tr>
-		</table>	
+					</div>
+				</div>
+				<div id="col_middle" class="column">
+				</div>
+				<div id="col_right" class="column">
+				</div>
+				<br>
+			<!--	<div id="loadmore" style="display:block"><center><div id="button_load"><button id="loadmoreitems" class="btn btn-normal" style="font-family:'our_font';color:#6E6E6E;font-size:14.5px;" onclick="more()">...More...</button><div id="gif_loader"><img src="../img/ajax_loader.gif"><div></div></center></div> -->
+				<br>
 	</div>
+	<script type="text/javascript">
+	function addItem(pid,pcolor,pname,plikes,pdescription){
+					var str = '<div id="img1" class="item"><div><a href="item.php" onclick="set_session_elements('+pid+')"><div id="to_append_'+pid+'"></div></a></div><div class="color_like"><div class="colors"><div class="available_colors">';
 
-	<?php include_once("footer.php");?>
+					var arr = pcolor.split(",");
+					for(var j1=0;j1<arr.length-1;j1++){
+						str += '<div class="circle" style="background-color:'+arr[j1]+'"></div>&nbsp;';
+					}
+					str +=	'</div></div>';
+					str+= '<div class="like"><div class="heart"><img src="../layout/heart.png"/></div><div>'+plikes+' People like this</div></div></div><div class="description">'+pdescription+'</div>	</div>';
 
+					$('<img id="img_'+pid+'" src="../img/large/'+pname+'" class="img">').load(function(){
+						var left_ht = $("#col_left_big").height();
+						var mid_ht = $("#col_middle").height();
+						var right_ht = $("#col_right").height();
+						if(left_ht<=mid_ht && left_ht<=right_ht){
+							$(str).appendTo("#col_left");
+							$(this).appendTo("	#to_append_"+pid).hide().fadeIn(560);
+						}
+						else if(mid_ht<=left_ht && mid_ht<=right_ht){
+							$(str).appendTo("#col_middle");
+							$(this).appendTo("#to_append_"+pid).hide().fadeIn(560);
+						}
+						else{
+							$(str).appendTo("#col_right");
+							$(this).appendTo("#to_append_"+pid).hide().fadeIn(560);
+						}
+						
+					});
+					
+	}
+
+	var data = <?php 
+						include_once("../backend/insert_user.php");
+						  $insert1= new USER_UPDATE();
+						  $res = $insert1-> getFavList($_SESSION['email']);
+						  echo "$res";
+					 ?>;
+
+
+	function loadItems(){
+		$("#button_load").hide();
+		$("#gif_loader").show();
+		var y1 = 0;
+		for(y1=0;y1<data.data.length;y1++){
+			addItem(data.data[y1]['pid'],data.data[y1]['color'],data.data[y1]['pname'],data.data[y1]['likes'],data.data[y1]['description']);
+		}
+		$("#button_load").show();
+		$("#gif_loader").hide();		
+	}
+	
+	loadItems();
+
+	</script>
 	</body>
 </html>

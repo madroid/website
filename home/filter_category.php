@@ -1,5 +1,4 @@
 <?php
-
 require_once('../backend/common.php');
 
 if($_POST['filter_products']){

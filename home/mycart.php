@@ -10,14 +10,9 @@ if(session_id() == '') {
 		<script type="text/javascript">
 			$(document).ready(function(){
 				
-				var mycart = <?php (include_once('../backend/get_cart_elements.php')); ?>;
-				
-				for(var i=0;i<mycart.length;i++){
-					addItem(mycart[i]['pid'],mycart[i]['price'],mycart[i]['pname'],mycart[i]['size'],mycart[i]['qty']);
-				}
-			});
+				var mycart = <?php include_once('../backend/get_cart_elements.php'); ?>;
 
-			function addItem(pid,pprice,pname,psize,pqty){
+				function addItem(pid,pprice,pname,psize,pqty){
 					var str = '<div class="cart_item"><div id="'+pid+'" class="cart_image"></div><div class="cart_price">Rs. <span>'+moneyString(pprice)+'</span></div><div class="cart_specs">size <span class="size">'+psize+'</span> | quantity <span class="quantity">'+pqty+'</span></div><div class="cart_edit">EDIT</div></div>';
 
 					$('<img src ="../img/large/'+pname+'">').load(function(){
@@ -26,22 +21,28 @@ if(session_id() == '') {
 						var right_ht = $("#cat_right").height();
 						if(left_ht<=mid_ht && left_ht<=right_ht){
 							$(str).appendTo("#cat_left");
-							$(this).appendTo("#"+pid).hide().fadeIn(560);
+							$(this).appendTo("#"+pid);
 						}
 						else if(mid_ht<=left_ht && mid_ht<=right_ht){
 							$(str).appendTo("#cat_middle");
-							$(this).appendTo("#"+pid).hide().fadeIn(560);
+							$(this).appendTo("#"+pid);
 						}
 						else{
 							$(str).appendTo("#cat_right");
-							$(this).appendTo("#"+pid).hide().fadeIn(560);
+							$(this).appendTo("#"+pid);
 						}
-						
 					});
-					
 				}
 
 
+				
+				for(var i=0;i<mycart.length;i++){
+					addItem(mycart[i]['pid'],mycart[i]['price'],mycart[i]['pname'],mycart[i]['size'],mycart[i]['qty']);
+				}
+
+			});
+
+			
 		</script>
 	</head>	
 
@@ -93,7 +94,7 @@ if(session_id() == '') {
 					
 					
 					<div id="continue_button">
-						<div><a href="#">continue shopping</div>
+						<div><a href="category.php?tag=Women">continue shopping</div>
 					</div>
 					
 				</div>
@@ -108,63 +109,23 @@ if(session_id() == '') {
 
 
 		<script type="text/javascript">
-			$(function(){
-				$(".cart_edit").on('click',function(e){
-					alert(1);
-					var elem = $(this).parent().children('.cart_image');
-					var arr_elem = elem.children(".layer");
-					if(arr_elem.length==0){
-						elem.append('<div class="cart_edit_hover1 layer"></div>	<div class="layer cart_edit_hover2"><div class="cart_edit_option"><div><select id="select_size"><option>S</option><option>M</option><option>L</option><option>X</option></select>	</div><div><select id="select_qty"><option>1</option><option>2</option><option>3</option><option>4</option></select>	</div><div class="buttons"><div class="hover_button1 cursor" > Done</div><div class="hover_button2 cursor" > Cancel</div></div>	</div></div>');
-						elem.children('.cart_edit_hover2').hide();
-						elem.children('.cart_edit_hover2').slideDown(800,'easeOutExpo');
-
-						var done = elem.children('.layer').children('.cart_edit_option').children('.buttons').children('.hover_button1');
-						var cancel = elem.children('.layer').children('.cart_edit_option').children('.buttons').children('.hover_button2');
-
-						var val_size = $(this).parent().children(".cart_specs").children(".size");
-						var val_qty  = $(this).parent().children(".cart_specs").children(".quantity");
-
-						var layer_val_size = elem.children(".cart_edit_hover2").children(".cart_edit_option").children("div").children("#select_size");
-						var layer_val_qty = elem.children(".cart_edit_hover2").children(".cart_edit_option").children("div").children("#select_qty");
-
-						layer_val_size.val(val_size.html());
-						layer_val_qty.val(val_qty.html());
-						
-						done.on('click',function(){
-							val_size.html(layer_val_size.val());
-							val_qty.html(layer_val_qty.val());
-							edit_cart(elem.attr('id'),layer_val_size.val(),layer_val_qty.val());
-							cancel.click();
-						});
-
-						cancel.on('click',function(){
-							elem.children(".cart_edit_hover1").remove();
-							elem.children('.cart_edit_hover2').slideUp(function(){
-								$(this).remove();
-							});
-						});			
-
-
-					}
-
-				});
-
-			});
-
+			
+		
+			 
+                    $(document).on('click','.cart_edit',function(){
+                    	alert(1);
+                    });
+            
 			function edit_cart(cart_item_id,cart_item_size,cart_item_qty){
-				
-				
 					$("#select_size").val("Select size");
 					$("#select_qty").val("Select quantity");
 					$.ajax({
 						type:'POST',
 						url:'session.php',
 						data:'item_id='+cart_item_id+"&item_size="+cart_item_size+"&item_qty="+cart_item_qty,
-						success:function(html){
-							
+						success:function(html){							
 						}
 					});	
-				
 			}
 
 		</script>

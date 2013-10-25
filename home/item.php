@@ -1,16 +1,22 @@
-<?php
+ <?php
 if(session_id() == '') {
     session_start();
 }
 ?><html language="en">
 	<head>
-		<?php include_once("head.php"); ?>		
+		<?php 
+			include_once("head.php"); 
+			
+		?>
 		<link href="item_css.css" rel="stylesheet">
 		<script type="text/javascript">
-			var new_item_id;
-			var data;
-			
-
+			var isloggedin = 0;
+			var no_cart_elem = 0;
+			isloggedin = <?php if(isset($_SESSION['email'])){echo "1";} else{echo "0";} ?>;
+			no_cart_elem = <?php if(isset($_SESSION['email'])){echo sizeof($_SESSION['cart']);} else{echo 0;} ?>;
+			var new_item_id=0;
+			//var given_id = GetUrlValue('id');
+			var given_id = document.location.hash.split("#")[1];
 			function loadNewData(){
 				$("#normal").css("opacity","0.5");
 				$('<img src="../img/large/'+data.data[new_item_id]['pname']+'">').load(function(){
@@ -22,10 +28,50 @@ if(session_id() == '') {
 				});
 			}
 
+			var data1;
+			var data ;
+				
+
 			$(document).ready(function(){
 
-				new_item_id = <?php echo $_SESSION['item_id']; ?>;
-				data = <?php echo $_SESSION['item_list']; ?>;
+				// var check = <?php 
+				// 				if(isset($_REQUEST['tag'])){
+				// 					echo "1";
+				// 				 }
+				// 				 else{
+				// 				 	echo "0";
+				// 				 }
+				// 			?> ;
+				// if(check=="1"){
+							data1  = <?php 
+									include_once("../backend/populate.php");
+									$populate = new Populate();
+									$res = $populate -> getCategory($_REQUEST['tag']);
+									echo json_encode($res);
+						 			?>;
+        		// }
+        		// else{
+        		// 		$.ajax({
+        		// 			type:"POST",
+        		// 			url:"../backend/populate.php",
+        		// 			async:false,
+        		// 			data:"product_id="+document.location.hash.split("#")[1],
+        		// 			success:function(json){
+        		// 				data1 = json;
+        		// 			}
+        		// 		});
+        		// }
+
+				data = JSON.parse(data1);
+
+				var x1 = 0;
+				loop1:for(x1=0;x1<data.data.length;x1++){
+					if(given_id==data.data[x1]['pid']){
+						new_item_id = x1 ;
+						break loop1;
+					}
+				}
+
 				loadNewData();
 
 				
@@ -51,7 +97,7 @@ if(session_id() == '') {
 
 			
 			$("#normal").mousemove(function(e){
-			  lens(img_top,img_left,img_height+img_top,img_left+img_width,e.pageX,e.pageY,($("#large_image").width()/img_width));
+			  //lens(img_top,img_left,img_height+img_top,img_left+img_width,e.pageX,e.pageY,($("#large_image").width()/img_width));
 			});
 
 
@@ -108,12 +154,17 @@ if(session_id() == '') {
 		    }
 		}
 
+		if(isloggedin=="1"){
+
+		}
+
 		</script>
 	</head>
 
 	<body>
 		
-		<?php if(isset($_SESSION['email'])) {include_once('login_header.php');} ?>		
+		<?php if(isset($_SESSION['email'])) {include_once('login_header.php');} ?>
+
 		
 		<div id="head2">
 			<div id="id1">
@@ -179,6 +230,7 @@ if(session_id() == '') {
 				<img id="checkout" src="../img/item/cart.png"/>
 			</a>
 		</div>
+		<?php include_once("login_modal.php"); ?>
 		<script type="text/javascript">
 			$("#cat").on('change',function(){
 				var cat = $("#cat").val();
@@ -198,7 +250,7 @@ if(session_id() == '') {
 			function leftClick(){
 				if(new_item_id>0){
 					new_item_id--;
-					set_item_session(new_item_id);
+					document.location.hash=data.data[new_item_id]['pid'];
 					loadNewData();
 				}
 			}
@@ -208,7 +260,7 @@ if(session_id() == '') {
 			function rightClick(){
 				if(new_item_id<data.data.length-1){
 					new_item_id++;
-					set_item_session(new_item_id);
+					document.location.hash=data.data[new_item_id]['pid'];
 					loadNewData();
 				}
 			}
@@ -230,25 +282,30 @@ if(session_id() == '') {
 			}
 
 			function addToCart(){
-				var cart_item_size = $("#select_size").val();
-				var cart_item_qty = $("#select_qty").val();
-				if(cart_item_size=="Select size"){
-					alert("Please select the size");
-				}
-				else if(cart_item_qty == "Select quantity"){
-					alert("Please select the quantity");
+				if(isloggedin=="1"){
+					var cart_item_size = $("#select_size").val();
+					var cart_item_qty = $("#select_qty").val();
+					if(cart_item_size=="Select size"){
+						alert("Please select the size");
+					}
+					else if(cart_item_qty == "Select quantity"){
+						alert("Please select the quantity");
+					}
+					else{
+						$("#select_size").val("Select size");
+						$("#select_qty").val("Select quantity");
+						$.ajax({
+							type:'POST',
+							url:'session.php',
+							data:'item_id='+data.data[new_item_id]['pid']+"&item_size="+cart_item_size+"&item_qty="+cart_item_qty,
+							success:function(html){
+								alert(html);
+							}
+						});	
+					}
 				}
 				else{
-					$("#select_size").val("Select size");
-					$("#select_qty").val("Select quantity");
-					$.ajax({
-						type:'POST',
-						url:'session.php',
-						data:'item_id='+data.data[new_item_id]['pid']+"&item_size="+cart_item_size+"&item_qty="+cart_item_qty,
-						success:function(html){
-							alert(html);
-						}
-					});	
+					$('#login_box').modal('show');
 				}
 			}
 

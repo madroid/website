@@ -70,6 +70,13 @@ ul{
 	background-color: white;
 	clear:both;
 	z-index: -20px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.item:hover{
+
 }
 
 .img{
@@ -173,15 +180,20 @@ ul{
 
 .menu  ul  li  a{
 	text-decoration: none;
-	color:#B0AFAB;
+	color:gray;
 	font-size: 13px;
+}
+
+.menu  ul  li  a:hover{
+	color:white;
 }
 
 .sub_menu{
 	z-index: 200px;
-	position: relative;
+	position: absolute;
 	border: 0px solid red;
 	padding-top: 6px;
+
 }
 
 ul.sub_menu li a{
@@ -219,7 +231,7 @@ ul.sub_menu> li > a {
 
 ul.sub_menu> li > a:hover {
 	padding-left: 35px;
-	background-color: rgba(0, 0, 0, 0.2);
+	background: transparent;
 }
 
 .heart{
@@ -246,7 +258,7 @@ ul.sub_menu> li > a:hover {
 
 .column{
 	width: 256px;
-	padding:0px 35px;
+	padding:0px 25px;
 	display: inline-block;
 	vertical-align: top;	
 	border: 0px solid black;

@@ -94,16 +94,24 @@ class USER_UPDATE{
 	public function add_item($email,$pid,$col){
 		require_once('connect.php');
 		$db = new DB_CONNECT();
-		$pid1 = $pid."#";
-		$query = "UPDATE user SET $col=IFNULL(CONCAT($col,'$pid1'),'$pid1') WHERE email='$email'";
+		$query = "SELECT '$col' FROM user WHERE email='$email' AND $col like '%$pid%'";
 		$result = mysql_query($query);
-		if($result>0){
-			$response['success'] = 1;
-			$response['message'] = "Item added successfully!";
+		if(!empty($result) && mysql_num_rows($result)>0){
+			$response['success'] = 0;
+			$response['message'] = "Item already liked";
 		}
 		else{
-			$response['success'] = 0;
-			$response['message'] = "Addition of item failed";
+			$pid1 = $pid.",";
+			$query = "UPDATE user SET $col=IFNULL(CONCAT($col,'$pid1'),'$pid1') WHERE email='$email'";
+			$result = mysql_query($query);
+			if($result>0){
+				$response['success'] = 1;
+				$response['message'] = "Item added successfully!";
+			}
+			else{
+				$response['success'] = 0;
+				$response['message'] = "Addition of item failed";
+			}
 		}
 		return json_encode($response);
 	}
@@ -119,7 +127,7 @@ class USER_UPDATE{
 	public function remove_item($email,$pid,$col){
 		require_once('connect.php');
 		$db = new DB_CONNECT();
-		$pid1 = $pid."#";
+		$pid1 = $pid.",";
 		$query = "UPDATE user SET $col=REPLACE($col,'$pid1','') WHERE email='$email'";
 		$result = mysql_query($query);
 		if($result>0){
@@ -172,12 +180,80 @@ class USER_UPDATE{
 		
 		return json_encode($response);
 	}
+
+	public function getFavList($email){
+		require_once('connect.php');
+		$db = new DB_CONNECT();
+		$response = array();
+		$query = "SELECT fav_list FROM user WHERE email='$email'";
+		$result  = mysql_query($query);
+		if(!empty($result)){
+			$id_str_arr = mysql_fetch_assoc($result);
+			if(strlen(trim($id_str_arr['fav_list']))>0){
+				$list = explode(",", $id_str_arr['fav_list']);
+				$query = "SELECT * FROM product WHERE pid IN (";
+				for($i=0;$i<sizeof($list)-2;$i++){
+					$query .= $list[$i].",";
+				}
+				$query.= $list[$i].")";
+				$result = mysql_query($query);
+				$response['data'] = array();
+				if(!empty($result)){
+					while($row = mysql_fetch_assoc($result)){
+						array_push($response['data'],$row);
+					}
+					$response['success'] = 1;
+					$response['message'] = "Got result successfully!";
+					
+				}
+				else{
+					$response['success'] = 5;
+					$response['message'] = "Got empty results while fetching the result";
+				}
+			}
+			else{
+				$response['success'] = 1;
+				$response['message'] = "unable to fetch like list";
+				$response['data'] = "";
+			}
+		}
+		else{
+				$response['success'] = 0;
+				$response['message'] = "unable to fetch like list";			
+		}
+		return json_encode($response);
+	}
 }
 
+
+
 // require_once('insert_user.php');
-	// $insert= new USER_UPDATE();
-	// $res = $insert-> subscribe("abc@gmail.com",0);
+    $insert= new USER_UPDATE();
+	$res = $insert-> getFavList("patidar.sagar6955@gmail.com");
 	// echo "<br>";
-	// echo "$res";
+	echo "$res";
+
+if(isset($_POST['code'])){
+	$code = $_POST['code'];
+	if($code==0){ // like it
+		if(isset($_POST['email']) && isset($_POST['pid'])){
+			$res = $insert-> add_favlist($_POST['email'],$_POST['pid']);
+			echo "$res";
+		}
+	}
+	else if($code==1){ // dislike it
+		if(isset($_POST['email']) && isset($_POST['pid'])){
+			$res = $insert-> remove_favlist($_POST['email'],$_POST['pid']);
+			echo "$res";	
+		}
+	}
+	else if($code==2){ // get fav list
+		if(isset($_POST['email'])){
+			$res = $insert-> getFavList($_POST['email']);
+			echo "$res";
+		}
+	}
+}
+
 
 ?>
