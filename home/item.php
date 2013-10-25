@@ -145,7 +145,7 @@ if(session_id() == '') {
 		    else if((mouseX+widthby2)>=right1){
 		    	$("#lens").clearQueue().animate({"left":right1-(widthby2*2)},300,"easeOutQuint");
 		    	$("#overlay_image").clearQueue().animate({"left":wid-img_width-(wid-widthby2*2)/2},300,"easeOutQuint");
-		    	$("#large_image").clearQueue().animate({"left":-(img_width- widthby2*2)*ratio},600,"easeOutCirc");
+		    	$("#large_image").clearQueue().animate({"left":-(img_width*ratio- img_width)},600,"easeOutCirc");
 		    }
 		    else{
 		    	$("#lens").clearQueue().animate({"left":mouseX-widthby2},300,"easeOutQuint");
@@ -161,7 +161,7 @@ if(session_id() == '') {
 		    else if((mouseY+heightby2)>=bottom1){
 		    	$("#lens").clearQueue().animate({"top":bottom1-(heightby2*2)},300,"easeOutQuint");	
 		    	$("#overlay_image").clearQueue().animate({"top":ht-img_height-(ht- heightby2*2)/2},300,"easeOutQuint");
-		    	$("#large_image").clearQueue().animate({"top":-(img_height- heightby2*2)*ratio},600,"easeOutCirc");
+		    	$("#large_image").clearQueue().animate({"top":-(img_height*ratio- img_height)},600,"easeOutCirc");
 		    }
 		    else{
 		    	$("#lens").clearQueue().animate({"top":mouseY-heightby2},300,"easeOutQuint");		
