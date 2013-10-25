@@ -189,7 +189,7 @@ ul{
 }
 
 .sub_menu{
-	z-index: 200px;
+	z-index: 10;
 	position: absolute;
 	border: 0px solid red;
 	padding-top: 6px;
@@ -212,11 +212,13 @@ ul.sub_menu li a{
 	top: 20.5px;
 	left: 0px;
 	width: 120px;
+	
 }
 
 .menu .sub_menu  li{
 	display: block;
 	border-bottom: 1px solid white;
+	
 }
 
 
@@ -303,7 +305,6 @@ ul.sub_menu> li > a:hover {
 
 .profile_header > a{
 	color: gray;
-	
 	text-decoration: none;
 }
 
@@ -319,7 +320,7 @@ ul.sub_menu> li > a:hover {
 #head2{
 	border: 0px solid black;
 	padding-left: 150px;
-	position: relative;
+	
 	background-color: #EDE9E6;
 
 }
@@ -336,11 +337,10 @@ ul.sub_menu> li > a:hover {
 
 #lines{
 	height: 10px;
-	border: 1px solid black;
-	border-left: 0px;
-	border-right: 0px;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
 	margin-top: 10px;
-	border-color: rgba(0,0,0,0.2);
+	border-color: rgba(1,1,1,0.2);
 }
 
 select{

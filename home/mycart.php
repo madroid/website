@@ -113,7 +113,41 @@ if(session_id() == '') {
 		
 			 
                     $(document).on('click','.cart_edit',function(){
-                    	alert(1);
+                    	var elem = $(this).parent().children('.cart_image');
+					var arr_elem = elem.children(".layer");
+					if(arr_elem.length==0){
+						elem.append('<div class="cart_edit_hover1 layer"></div>	<div class="layer cart_edit_hover2"><div class="cart_edit_option"><div><select id="select_size"><option>S</option><option>M</option><option>L</option><option>X</option></select>	</div><div><select id="select_qty"><option>1</option><option>2</option><option>3</option><option>4</option></select>	</div><div class="buttons"><div class="hover_button1 cursor" > Done</div><div class="hover_button2 cursor" > Cancel</div></div>	</div></div>');
+						elem.children('.cart_edit_hover2').hide();
+						elem.children('.cart_edit_hover2').slideDown(800,'easeOutExpo');
+
+						var done = elem.children('.layer').children('.cart_edit_option').children('.buttons').children('.hover_button1');
+						var cancel = elem.children('.layer').children('.cart_edit_option').children('.buttons').children('.hover_button2');
+
+						var val_size = $(this).parent().children(".cart_specs").children(".size");
+						var val_qty  = $(this).parent().children(".cart_specs").children(".quantity");
+
+						var layer_val_size = elem.children(".cart_edit_hover2").children(".cart_edit_option").children("div").children("#select_size");
+						var layer_val_qty = elem.children(".cart_edit_hover2").children(".cart_edit_option").children("div").children("#select_qty");
+
+						layer_val_size.val(val_size.html());
+						layer_val_qty.val(val_qty.html());
+						
+						done.on('click',function(){
+							val_size.html(layer_val_size.val());
+							val_qty.html(layer_val_qty.val());
+							edit_cart(elem.attr('id'),layer_val_size.val(),layer_val_qty.val());
+							cancel.click();
+						});
+
+						cancel.on('click',function(){
+							elem.children(".cart_edit_hover1").remove();
+							elem.children('.cart_edit_hover2').slideUp(function(){
+								$(this).remove();
+							});
+						});			
+
+
+					}
                     });
             
 			function edit_cart(cart_item_id,cart_item_size,cart_item_qty){

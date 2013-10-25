@@ -21,10 +21,10 @@ body{
 .top{
 	overflow: auto;
 	border:0px solid black;
-	background-image: url('../img/main/main2.jpg');
+	background-image: url('../img/main/main1.png');
 	background-repeat: no-repeat;
 	background-position: right;
-	background-size: 100% auto;
+	background-size: auto 100%;
 }
 
 .logo{

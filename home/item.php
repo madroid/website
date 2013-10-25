@@ -24,6 +24,7 @@ if(session_id() == '') {
 					$(this).appendTo($("#normal"));
 					$('#title').html(data.data[new_item_id]['title']);
 					$('#price').html(moneyString(data.data[new_item_id]['price']));
+					$("#description").html(data.data[new_item_id]['description']);
 					$("#normal").css("opacity","1");
 				});
 			}
@@ -31,7 +32,10 @@ if(session_id() == '') {
 			var data1;
 			var data ;
 				
-
+			var img_width;
+			var img_height;
+			var img_left;
+			var img_top;
 			$(document).ready(function(){
 
 				// var check = <?php 
@@ -73,10 +77,10 @@ if(session_id() == '') {
 				}
 
 				loadNewData();
-
-				
+				//alert(($("#container").offset().top)+70);
+			
 			$("#normal").mouseenter(function(){
-				var position = $(this).position();;
+				var position = $(this).offset();;
 				img_width = $("#normal").width();
 			 	img_height = $("#normal").height();
 			  	img_left = position.left;
@@ -97,7 +101,10 @@ if(session_id() == '') {
 
 			
 			$("#normal").mousemove(function(e){
-			  //lens(img_top,img_left,img_height+img_top,img_left+img_width,e.pageX,e.pageY,($("#large_image").width()/img_width));
+			  lens(img_top,img_left,img_height+img_top,img_left+img_width,e.pageX,e.pageY,($("#large_image").width()/img_width));
+			  //alert(img_left+" "+img_top);
+
+
 			});
 
 
@@ -109,6 +116,15 @@ if(session_id() == '') {
 				$("#lens").remove();
 				$("#zoomed").remove();
 			});
+
+			$('img').bind("contextmenu",function(e){
+            return false;
+        });
+ 
+// Here we disable default behaviors for mousedown which include the drag options.
+        $('img').bind("mousedown",function(e){
+            return false;
+        });
 					
 			});
 
@@ -123,40 +139,41 @@ if(session_id() == '') {
 			// Checking top and left coordinates of 
 		    if((mouseX-widthby2)<=left1){
 		   		$("#lens").clearQueue().animate({"left":left1},300,"easeOutQuint");
-		   		//$("#overlay_image").clearQueue().animate({"left":(wid-widthby2*2)/2},300,"easeOutQuint");
-		   		//$("#large_image").clearQueue().animate({"left":0},600,"easeOutCirc");
+		   		$("#overlay_image").clearQueue().animate({"left":(wid-widthby2*2)/2},300,"easeOutQuint");
+		   		$("#large_image").clearQueue().animate({"left":0},600,"easeOutCirc");
 		    }
 		    else if((mouseX+widthby2)>=right1){
 		    	$("#lens").clearQueue().animate({"left":right1-(widthby2*2)},300,"easeOutQuint");
-		    	//$("#overlay_image").clearQueue().animate({"left":wid-img_width-(wid-widthby2*2)/2},300,"easeOutQuint");
-		    	//$("#large_image").clearQueue().animate({"left":-(img_width- widthby2*2)*ratio},600,"easeOutCirc");
+		    	$("#overlay_image").clearQueue().animate({"left":wid-img_width-(wid-widthby2*2)/2},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"left":-(img_width- widthby2*2)*ratio},600,"easeOutCirc");
 		    }
 		    else{
 		    	$("#lens").clearQueue().animate({"left":mouseX-widthby2},300,"easeOutQuint");
-		    	//$("#overlay_image").clearQueue().animate({"left":left1+(wid/2)-mouseX},300,"easeOutQuint");
-		    	//$("#large_image").clearQueue().animate({"left":img_width/2-((mouseX-left1)*ratio)},600,"easeOutCirc");
+		    	$("#overlay_image").clearQueue().animate({"left":left1+(wid/2)-mouseX},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"left":img_width/2-((mouseX-left1)*ratio)},600,"easeOutCirc");
 		    }
 
 		    if((mouseY-heightby2)<=top1){
 		    	$("#lens").clearQueue().animate({"top":top1},300,"easeOutQuint");
-		    	//$("#overlay_image").clearQueue().animate({"top":(ht- heightby2*2)/2},300,"easeOutQuint");
-		    	//$("#large_image").clearQueue().animate({"top":0},600,"easeOutCirc");
+		    	$("#overlay_image").clearQueue().animate({"top":(ht- heightby2*2)/2},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"top":0},600,"easeOutCirc");
 		    }
 		    else if((mouseY+heightby2)>=bottom1){
 		    	$("#lens").clearQueue().animate({"top":bottom1-(heightby2*2)},300,"easeOutQuint");	
-		    	//$("#overlay_image").clearQueue().animate({"top":ht-img_height-(ht- heightby2*2)/2},300,"easeOutQuint");
-		    	//$("#large_image").clearQueue().animate({"top":-(img_height- heightby2*2)*ratio},600,"easeOutCirc");
+		    	$("#overlay_image").clearQueue().animate({"top":ht-img_height-(ht- heightby2*2)/2},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"top":-(img_height- heightby2*2)*ratio},600,"easeOutCirc");
 		    }
 		    else{
-		    	$("#lens").clearQueue().animate({"top":mouseY-heightby2-$("#container").offset().top},300,"easeOutQuint");		
-		    	//$("#overlay_image").clearQueue().animate({"top":top1+(ht/2)-mouseY},300,"easeOutQuint");
-		    	//$("#large_image").clearQueue().animate({"top":img_height/2-((mouseY-top1)*ratio)},600,"easeOutCirc");
+		    	$("#lens").clearQueue().animate({"top":mouseY-heightby2},300,"easeOutQuint");		
+		    	$("#overlay_image").clearQueue().animate({"top":top1+(ht/2)-mouseY},300,"easeOutQuint");
+		    	$("#large_image").clearQueue().animate({"top":img_height/2-((mouseY-top1)*ratio)},600,"easeOutCirc");
 		    }
 		}
 
 		if(isloggedin=="1"){
 
 		}
+
 
 		</script>
 	</head>
@@ -175,8 +192,6 @@ if(session_id() == '') {
 			</div>	
 		</div>
 
-		<div id="lines">
-		</div>
 		<div id="container">
 			<div id="left_arrow">
 				<img id="l_image" src="../img/item/arrowL.png"  class="cursor" onclick="leftClick()">
